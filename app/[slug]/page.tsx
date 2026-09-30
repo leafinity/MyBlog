@@ -28,9 +28,10 @@ export default async function PostPage({ params }: { params: { slug: string } })
   }
 }
 
+// @ts-ignore
 async function getPageIdFromYourDatabase(slug: string) {
   try {
-    const response = await (notionDb.databases as any).query({
+    const response = notionDb.databases.query({
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
         and: [

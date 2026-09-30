@@ -48,6 +48,7 @@ export default async function HomePage() {
 }
 
 // 將資料庫查詢邏輯抽出來
+// @ts-ignore
 async function getPublishedPosts() {
   try {
     const response = await notionDb.databases.query({
