@@ -1,50 +1,60 @@
-import { Client } from '@notionhq/client';
 import { NotionAPI } from 'notion-client';
 import NotionRendererView from '../NotionRendererView';
 
-export const revalidate = 3600; 
+export const revalidate = 3600;
 
-// 非官方 API：用來抓文章完整內容與圖片
+// 建立第二棒選手 (專門抓完整圖文內容)
 const notionX = new NotionAPI();
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  
-  const pageId = await getPageIdFromYourDatabase(slug);
+  // 第一棒：去問官方資料庫，這篇文章的 ID 是多少？
+  const pageId = await getPageIdFromYourDatabase(params.slug);
 
   if (!pageId) {
-    return <div className="text-center py-20 text-2xl font-bold">找不到這篇文章...</div>;
+    return <div className="text-center py-20">找不到這篇文章...</div>;
   }
 
-  // 用查到的 pageId 抓取完整的 recordMap
+  // 第二棒：拿到 ID 了，叫 notionX 去把這整頁的圖文內容 (recordMap) 抓回來
   const recordMap = await notionX.getPage(pageId);
 
-  // 將 recordMap 傳給你的渲染元件
+  // 把豐富的內容丟給畫面元件去畫
   return <NotionRendererView recordMap={recordMap} />;
 }
 
+// 第一棒的實作細節 (純原生 fetch，絕不當機)
 async function getPageIdFromYourDatabase(slug: string) {
   try {
-    // 官方 API：用來查 ID
-    const notion = new Client({ auth: process.env.NOTION_TOKEN });
-    // 加上 as any 解決 TS 報錯
-    const response = await (notion.databases as any).query({
-      database_id: process.env.NOTION_DATABASE_ID!,
-      filter: {
-        and: [
-          { property: 'slug', rich_text: { equals: slug } },
-          { property: 'status', select: { equals: 'Published' } },
-          { property: 'type', select: { equals: 'Post' } }
-        ]
-      },
-    });
+    const response = await fetch(
+      `https://api.notion.com/v1/databases/${process.env.NOTION_DATABASE_ID}/query`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.NOTION_TOKEN}`,
+          'Notion-Version': '2022-06-28',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          filter: {
+            and: [
+              { property: 'slug', rich_text: { equals: slug } },
+              { property: 'status', select: { equals: 'Published' } },
+              { property: 'type', select: { equals: 'Post' } }
+            ]
+          }
+        }),
+        next: { revalidate: 3600 }
+      }
+    );
 
-    if (response.results.length > 0) {
-      return response.results[0].id;
+    if (!response.ok) return null;
+
+    const data = await response.json();
+    if (data.results && data.results.length > 0) {
+      return data.results[0].id; // 成功找到 ID！
     }
     return null;
   } catch (error) {
-    console.error("Failed to query database for slug:", error);
+    console.error("查無此文章:", error);
     return null;
   }
 }
