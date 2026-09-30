@@ -1,54 +1,45 @@
-import { NotionAPI } from 'notion-client';
 import { Client } from '@notionhq/client';
-import NotionRendererView from '../NotionRendererView';
+import NotionRendererView from '../NotionRendererView'; // 確認相對路徑只有一層 ../
 
-export const revalidate = 3600; // 每一小時自動更新一次 Notion 的修改
+export const revalidate = 3600; 
 
-const notionRenderer = new NotionAPI();
-const notionDb = new Client({ auth: process.env.NOTION_TOKEN });
+// 1. 正確初始化官方 API (用來查 ID)
+const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+  const { slug } = params;
   
+  // 2. 用官方 API 查出這篇 slug 對應的真實 Page ID
   const pageId = await getPageIdFromYourDatabase(slug);
 
   if (!pageId) {
-    return <div className="text-center py-20">找不到這篇文章：{slug}</div>;
+    return <div className="text-center py-20 text-2xl font-bold">找不到這篇文章...</div>;
   }
 
-  try {
-    const recordMap = await notionRenderer.getPage(pageId);
-    return (
-      <article>
-        <NotionRendererView recordMap={recordMap} />
-      </article>
-    );
-  } catch (error) {
-    return <div className="text-center py-20">文章讀取失敗</div>;
-  }
+  // 3. 把查到的 ID 交給底下的渲染器畫出畫面
+  return <NotionRendererView pageId={pageId} />;
 }
 
-// @ts-ignore
 async function getPageIdFromYourDatabase(slug: string) {
   try {
-    const response = notionDb.databases.query({
+    const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
         and: [
           {
-            property: 'slug', // 條件一：網址要完全符合
+            property: 'slug',
             rich_text: {
               equals: slug,
             },
           },
           {
-            property: 'status', // 條件二：必須是已發布，防止草稿被偷看
+            property: 'status',
             select: {
               equals: 'Published',
             },
           },
           {
-            property: 'type', // 條件三：確保它是文章 (Post)
+            property: 'type',
             select: {
               equals: 'Post',
             },
@@ -62,7 +53,7 @@ async function getPageIdFromYourDatabase(slug: string) {
     }
     return null;
   } catch (error) {
-    console.error("Database query failed:", error);
+    console.error("Failed to query database for slug:", error);
     return null;
   }
 }
