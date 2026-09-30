@@ -1,6 +1,16 @@
-AbbysJourney/
-├── package.json
-└── app/
-    ├── layout.tsx
-    └── page.tsx
-    └── NotionRendererView.tsx
+{
+  "name": "my-blog",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "notion-client": "latest",
+    "react-notion-x": "latest"
+  }
+}
