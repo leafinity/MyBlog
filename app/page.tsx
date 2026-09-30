@@ -2,9 +2,7 @@ import { Client } from '@notionhq/client';
 import Link from 'next/link';
 
 // 每一小時自動更新
-export const revalidate = 3600; 
-
-const notionDb = new Client({ auth: process.env.NOTION_TOKEN });
+export const revalidate = 3600;
 
 export default async function HomePage() {
   // 1. 去你的 Notion 資料庫撈出所有「已發布」的文章
@@ -51,22 +49,14 @@ export default async function HomePage() {
 // @ts-ignore
 async function getPublishedPosts() {
   try {
-    const response = await (notionDb.databases as any).query({
+    // 官方 API：用來查 ID
+    const notion = new Client({ auth: process.env.NOTION_TOKEN });
+    const response = await (notion.databases as any).query({
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
         and: [
-          {
-            property: 'status',
-            select: {
-              equals: 'Published',
-            },
-          },
-          {
-            property: 'type', // 只抓取 type 為 Post 的文章
-            select: {
-              equals: 'Post',
-            },
-          }
+          { property: 'status', select: { equals: 'Published' } },
+          { property: 'type', select: { equals: 'Post' } }
         ]
       },
       sorts: [
