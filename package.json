@@ -11,20 +11,13 @@
     "react": "latest",
     "react-dom": "latest",
     "notion-client": "latest",
-    "react-notion-x": "latest"
+    "react-notion-x": "latest",
+    "@notionhq/client": "latest"
   },
   "devDependencies": {
     "typescript": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest"
-  },
-  "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "notion-client": "latest",
-    "react-notion-x": "latest",
-    "@notionhq/client": "latest"
   },
 }
