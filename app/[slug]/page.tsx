@@ -33,11 +33,26 @@ async function getPageIdFromYourDatabase(slug: string) {
     const response = await notionDb.databases.query({
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
-        // 注意：請確認你在 NotionNext 資料庫裡，設定網址的那個欄位名稱是不是叫 "Slug"
-        property: 'slug', 
-        rich_text: {
-          equals: slug,
-        },
+        and: [
+          {
+            property: 'slug', // 條件一：網址要完全符合
+            rich_text: {
+              equals: slug,
+            },
+          },
+          {
+            property: 'status', // 條件二：必須是已發布，防止草稿被偷看
+            select: {
+              equals: 'Published',
+            },
+          },
+          {
+            property: 'type', // 條件三：確保它是文章 (Post)
+            select: {
+              equals: 'Post',
+            },
+          }
+        ]
       },
     });
 

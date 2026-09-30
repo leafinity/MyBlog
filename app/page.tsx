@@ -1,21 +1,97 @@
-import { NotionAPI } from 'notion-client';
-import NotionRendererView from './NotionRendererView';
+import { Client } from '@notionhq/client';
+import Link from 'next/link';
 
-// 初始化 API 實例
-const notion = new NotionAPI();
+// 每一小時自動更新
+export const revalidate = 3600; 
 
-export default async function BlogPage() {
-  // 替換成你的 Notion 頁面 ID (網址後面那 32 個字元)
-  // 注意：這篇文章在 Notion 右上角必須開啟 "Share to web"
-  const pageId = '0d0b038c922b832aa8f781d9d53e4ffc';
+const notionDb = new Client({ auth: process.env.NOTION_TOKEN });
 
+export default async function HomePage() {
+  // 1. 去你的 Notion 資料庫撈出所有「已發布」的文章
+  const posts = await getPublishedPosts();
+
+  return (
+    <div className="max-w-4xl mx-auto py-10 px-4">
+      <h1 className="text-3xl font-bold mb-8">Abby's Journey</h1>
+      
+      <div className="grid gap-6 md:grid-cols-2">
+        {posts.map((post) => (
+          <Link 
+            key={post.id} 
+            href={`/post/${post.slug}`} 
+            className="block border rounded-lg p-6 hover:shadow-lg transition-shadow"
+          >
+            <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+            <p className="text-gray-600 text-sm mb-4">{post.date}</p>
+            {post.summary && (
+              <p className="text-gray-700">{post.summary}</p>
+            )}
+            
+            {/* 顯示分類標籤 */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {post.category && (
+                <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                  {post.category}
+                </span>
+              )}
+              {post.tags.map(tag => (
+                <span key={tag} className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// 將資料庫查詢邏輯抽出來
+async function getPublishedPosts() {
   try {
-    // 向 Notion 撈取這頁所有的 Block 結構 (回傳完整的 JSON)
-    const recordMap = await notion.getPage(pageId);
+    const response = await notionDb.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID!,
+      filter: {
+        and: [
+          {
+            property: 'status',
+            select: {
+              equals: 'Published',
+            },
+          },
+          {
+            property: 'type', // 只抓取 type 為 Post 的文章
+            select: {
+              equals: 'Post',
+            },
+          }
+        ]
+      },
+      sorts: [
+        {
+          property: 'date',
+          direction: 'descending', // 新文章排前面
+        },
+      ],
+    });
 
-    // 把撈回來的資料丟給 Client 元件渲染
-    return <NotionRendererView recordMap={recordMap} />;
+    // 將 Notion 的複雜資料結構，整理成我們前端好用的陣列
+    return response.results.map((page: any) => {
+      // 下面這些 properties 的名稱 (title, summary, slug, category, tags, date) 
+      // 必須跟你 Notion 資料庫裡面的「欄位名稱」完全一致（區分大小寫）！
+      return {
+        id: page.id,
+        title: page.properties.title?.title[0]?.plain_text || '無標題',
+        slug: page.properties.slug?.rich_text[0]?.plain_text || '',
+        summary: page.properties.summary?.rich_text[0]?.plain_text || '',
+        category: page.properties.category?.select?.name || '',
+        tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || [],
+        date: page.properties.date?.date?.start || '',
+      };
+    });
   } catch (error) {
-    return <div>文章讀取失敗，請檢查 Page ID 或是否已設為公開。</div>;
+    console.error("Failed to fetch posts:", error);
+    return [];
   }
 }
