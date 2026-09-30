@@ -51,7 +51,7 @@ export default async function HomePage() {
 // @ts-ignore
 async function getPublishedPosts() {
   try {
-    const response = await notionDb.databases.query({
+    const response = await (notionDb.databases as any).query({
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
         and: [

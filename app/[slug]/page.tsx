@@ -1,49 +1,40 @@
 import { Client } from '@notionhq/client';
-import NotionRendererView from '../NotionRendererView'; // 確認相對路徑只有一層 ../
+import { NotionAPI } from 'notion-client';
+import NotionRendererView from '../NotionRendererView';
 
 export const revalidate = 3600; 
 
-// 1. 正確初始化官方 API (用來查 ID)
+// 官方 API：用來查 ID
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
+// 非官方 API：用來抓文章完整內容與圖片
+const notionX = new NotionAPI();
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   
-  // 2. 用官方 API 查出這篇 slug 對應的真實 Page ID
   const pageId = await getPageIdFromYourDatabase(slug);
 
   if (!pageId) {
     return <div className="text-center py-20 text-2xl font-bold">找不到這篇文章...</div>;
   }
 
-  // 3. 把查到的 ID 交給底下的渲染器畫出畫面
-  return <NotionRendererView pageId={pageId} />;
+  // 用查到的 pageId 抓取完整的 recordMap
+  const recordMap = await notionX.getPage(pageId);
+
+  // 將 recordMap 傳給你的渲染元件
+  return <NotionRendererView recordMap={recordMap} />;
 }
 
 async function getPageIdFromYourDatabase(slug: string) {
   try {
-    const response = await notion.databases.query({
+    // 加上 as any 解決 TS 報錯
+    const response = await (notion.databases as any).query({
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
         and: [
-          {
-            property: 'slug',
-            rich_text: {
-              equals: slug,
-            },
-          },
-          {
-            property: 'status',
-            select: {
-              equals: 'Published',
-            },
-          },
-          {
-            property: 'type',
-            select: {
-              equals: 'Post',
-            },
-          }
+          { property: 'slug', rich_text: { equals: slug } },
+          { property: 'status', select: { equals: 'Published' } },
+          { property: 'type', select: { equals: 'Post' } }
         ]
       },
     });
