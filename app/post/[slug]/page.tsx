@@ -34,7 +34,7 @@ async function getPageIdFromYourDatabase(slug: string) {
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
         // 注意：請確認你在 NotionNext 資料庫裡，設定網址的那個欄位名稱是不是叫 "Slug"
-        property: 'Slug', 
+        property: 'slug', 
         rich_text: {
           equals: slug,
         },
