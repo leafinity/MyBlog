@@ -1,6 +1,6 @@
 import { NotionAPI } from 'notion-client';
 import { Client } from '@notionhq/client';
-import NotionRendererView from '../../NotionRendererView';
+import NotionRendererView from '../NotionRendererView';
 
 export const revalidate = 3600; // 每一小時自動更新一次 Notion 的修改
 
