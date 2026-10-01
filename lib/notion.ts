@@ -35,11 +35,23 @@ export async function getPublishedPosts() {
       summary: page.properties.summary?.rich_text[0]?.plain_text || '',
       date: page.properties.date?.date?.start || '',
       imageUrl: getPostCoverUrl(page)
+      category: page.properties.Category?.select?.name || '',
+      tags: page.properties.Tags?.multi_select?.map((tag: any) => tag.name) || []
     }));
   } catch (error) {
     console.error("抓取列表失敗:", error);
     return [];
   }
+}
+
+export async function getPostsByCategory(category: string) {
+  const allPosts = await getPublishedPosts();
+  return allPosts.filter((post: any) => post.category === category);
+}
+
+export async function getPostsByTag(tag: string) {
+  const allPosts = await getPublishedPosts();
+  return allPosts.filter((post: any) => post.tags?.includes(tag));
 }
 
 
@@ -79,7 +91,7 @@ export async function getPageIdFromYourDatabase(slug: string) {
   }
 }
 
-export function getPostCoverUrl(post: any): string {
+function getPostCoverUrl(post: any): string {
   let imageUrl = '';
 
   const customCover = post?.properties?.cover?.files?.[0];
