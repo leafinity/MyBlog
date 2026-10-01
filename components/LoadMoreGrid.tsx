@@ -16,12 +16,10 @@ export default function LoadMoreGrid({ posts }: { posts: any[] }) {
               <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
             </div>
             
-            {/* 標題 hover 使用主色 (深粉) */}
             <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-pink-main transition-colors line-clamp-2 leading-snug">
               {post.title}
             </h3>
             
-            {/* 日期使用副色 (淺粉) */}
             <p className="text-sm text-brand-pink-light mb-4 font-medium tracking-wide">
               {post.date}
             </p>
@@ -30,12 +28,10 @@ export default function LoadMoreGrid({ posts }: { posts: any[] }) {
               {post.summary}
             </p>
             
-            {/* 閱讀全文使用主色 (深粉) */}
             <p className="text-brand-pink-main text-sm mb-4 transition-colors group-hover:text-gray-900">
               閱讀全文 »
             </p>
             
-            {/* 標籤小字使用副色 (淺粉) */}
             <div className="text-sm text-brand-pink-light mt-auto">
               {[post.category, ...(post.tags || [])]
                 .filter(Boolean)
