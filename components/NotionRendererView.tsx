@@ -1,78 +1,62 @@
-"use client";
-
-import { useEffect } from 'react';
 import { NotionRenderer } from 'react-notion-x';
 import 'react-notion-x/src/styles.css'; 
 
 export default function NotionRendererView({ recordMap }: { recordMap: any }) {
-  
-  useEffect(() => {
-    // 1. 只找 Callout，且精準比對裡面的 Icon 是不是 🗓️
-    const callouts = document.querySelectorAll('.notion-callout');
-    callouts.forEach(callout => {
-      const icon = callout.querySelector('.notion-page-icon');
-      if (icon && icon.textContent?.includes('🗓️')) {
-        // 2. 幫這個特定的 Callout 貼上我們專屬的標籤，絕對不會影響到其他內容
-        callout.classList.add('is-timeline-callout');
-      }
-    });
-  }, [recordMap]);
-
   return (
     <div className="max-w-3xl mx-auto">
+      {/* 既然你不必保留原生的 Callout，我們直接用純 CSS 把它們全部變身！ */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* 1. 把這個特定的 Callout 外框與背景變透明 */
-        .is-timeline-callout {
+        /* 1. 隱藏預設圖示，消除原本 Callout 所有的預設樣式 */
+        .notion-callout {
           background: transparent !important;
           border: none !important;
           padding: 0 !important;
-          margin: 40px 0 !important;
+          margin: 32px 0 !important;
         }
-        /* 隱藏原本那個超大的 🗓️ Icon */
-        .is-timeline-callout > .notion-page-icon {
-          display: none !important; 
+        .notion-callout > .notion-page-icon {
+          display: none !important; /* 徹底殺掉左上角的原生圖示 */
         }
         
-        /* 2. 把 Callout 的內容區塊左側畫上一條貫穿的 #E16B8C 粉紅線 */
-        .is-timeline-callout .notion-callout-text {
+        /* 2. 畫出左側粉紅線，並設定內部間距避免文字疊在一起 */
+        .notion-callout-text {
           border-left: 2px solid #E16B8C !important;
           padding-left: 24px !important;
-          margin-left: 16px !important;
+          margin-left: 12px !important;
+          display: flex !important;
+          flex-direction: column !important; /* 確保標題和清單乖乖垂直排列 */
         }
 
-        /* 3. 將 Callout 裡面的【標題三】變成灰色卡片的「上半部」 */
-        .is-timeline-callout .notion-h3 {
-          background-color: #f9fafb !important;
-          padding: 20px 20px 8px 20px !important;
+        /* 3. 標題三 (灰底卡片上半部) */
+        .notion-callout-text .notion-h3 {
+          background-color: #f9fafb !important; /* 補上你要的乾淨灰底 */
+          padding: 16px 20px 8px 20px !important;
           border-radius: 12px 12px 0 0 !important;
-          margin-top: 24px !important;
+          margin: 0 !important;
           position: relative !important;
+          color: #111827 !important;
+          font-weight: 700 !important;
         }
 
-        /* 4. 畫出懸浮在粉紅線上的可愛圓點 */
-        .is-timeline-callout .notion-h3::before {
-          content: '🗓️';
-          position: absolute;
-          left: -41px; /* 精準對齊左側粉紅線 */
-          top: 16px;
-          background: #E16B8C;
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-          color: white;
-          border: 4px solid white;
+        /* 4. 極簡粉紅圓圈 (無 Icon，直接懸浮在線上) */
+        .notion-callout-text .notion-h3::before {
+          content: '' !important; /* 留空，不要圖示了 */
+          position: absolute !important;
+          left: -32px !important; /* 精準對齊左側 2px 的粉紅線 */
+          top: 22px !important;
+          background-color: #E16B8C !important;
+          width: 14px !important;
+          height: 14px !important;
+          border-radius: 50% !important;
+          border: 3px solid white !important; /* 白色外框切斷線條的視覺效果 */
         }
 
-        /* 5. 將 Callout 裡面的【清單】變成灰色卡片的「下半部」 */
-        .is-timeline-callout .notion-ul {
+        /* 5. 清單 (灰底卡片下半部) */
+        .notion-callout-text .notion-ul {
           background-color: #f9fafb !important;
-          padding: 0 20px 24px 40px !important; 
+          padding: 0 20px 20px 40px !important; 
           border-radius: 0 0 12px 12px !important;
-          margin-bottom: 24px !important;
+          margin: 0 !important;
+          color: #4b5563 !important;
         }
       `}} />
 
