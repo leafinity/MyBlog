@@ -88,5 +88,5 @@ export function getPostCoverUrl(post: any): string {
   }
 
   // 如果沒有放圖片，給一張預設圖避免破版
-  return imageUrl || '/[default-cover.jpg]';
+  return imageUrl || '/default-cover.jpg';
 }
