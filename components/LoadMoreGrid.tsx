@@ -11,37 +11,36 @@ export default function LoadMoreGrid({ posts }: { posts: any[] }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 gap-y-16">
         {posts.slice(0, displayCount).map((post) => (
           <Link href={`/${post.slug}`} key={post.id} className="group flex flex-col h-full">
-            {/* 1. 圖片 */}
+            
             <div className="w-full aspect-[4/3] overflow-hidden mb-6 relative bg-gray-100">
               <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
             </div>
             
-            {/* 2. 標題 */}
-            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#DC9FB4] transition-colors line-clamp-2 leading-snug">
+            {/* 標題 hover 使用主色 (深粉) */}
+            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-pink-main transition-colors line-clamp-2 leading-snug">
               {post.title}
             </h3>
             
-            {/* 3. 日期 (粉色) */}
-            <p className="text-sm text-[#DC9FB4] mb-4 font-medium tracking-wide">
+            {/* 日期使用副色 (淺粉) */}
+            <p className="text-sm text-brand-pink-light mb-4 font-medium tracking-wide">
               {post.date}
             </p>
             
-            {/* 4. Summary (內文摘要) */}
             <p className="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed flex-grow">
               {post.summary}
             </p>
             
-            {/* 5. 閱讀全文 */}
-            <p className="text-[#DC9FB4] text-sm mb-4 transition-colors group-hover:text-gray-900">
+            {/* 閱讀全文使用主色 (深粉) */}
+            <p className="text-brand-pink-main text-sm mb-4 transition-colors group-hover:text-gray-900">
               閱讀全文 »
             </p>
             
-            {/* 6. Tags (在最底部，純文字逗號分隔) */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="text-sm text-[#DC9FB4] mt-auto">
-                {post.tags.join(', ')}
-              </div>
-            )}
+            {/* 標籤小字使用副色 (淺粉) */}
+            <div className="text-sm text-brand-pink-light mt-auto">
+              {[post.category, ...(post.tags || [])]
+                .filter(Boolean)
+                .join(', ')}
+            </div>
           </Link>
         ))}
       </div>
