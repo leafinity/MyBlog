@@ -1,68 +1,44 @@
+// app/page.tsx
 import Link from 'next/link';
+// 從剛才建立的工具箱把函式匯入
+import { getPublishedPosts } from '@/lib/notion';
 
 export default async function HomePage() {
-  const posts = await getPublishedPosts();
+  // 畫面元件只負責呼叫，不負責管裡面怎麼抓的
+  const posts = await getPublishedPosts(); 
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-4">
-      <h1 className="text-3xl font-bold mb-8">Abby's Journey</h1>
-      <div className="grid gap-6 md:grid-cols-2">
+    <div className="max-w-4xl mx-auto py-16 px-6 font-sans bg-gray-50 min-h-screen">
+      <header className="mb-12 border-b border-gray-200 pb-6">
+        <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+          Abby's Journey
+        </h1>
+      </header>
+
+      <main className="flex flex-col gap-6">
         {posts.map((post: any) => (
           <Link 
             key={post.id} 
             href={`/${post.slug}`} 
-            className="block border rounded-lg p-6 hover:shadow-lg transition-shadow"
+            className="group block p-8 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200"
           >
-            <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-            <p className="text-gray-600 text-sm mb-4">{post.date}</p>
-            {post.summary && <p className="text-gray-700">{post.summary}</p>}
+            <h2 className="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors mb-2">
+              {post.title}
+            </h2>
+            <div className="text-sm text-gray-500 font-medium tracking-wide mb-4">
+              {post.date}
+            </div>
+            {post.summary && (
+              <p className="text-gray-600 leading-relaxed line-clamp-3">
+                {post.summary}
+              </p>
+            )}
+            <div className="mt-4 text-blue-500 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+              閱讀全文 →
+            </div>
           </Link>
         ))}
-      </div>
+      </main>
     </div>
   );
-}
-
-async function getPublishedPosts() {
-  try {
-    const response = await fetch(
-      `https://api.notion.com/v1/databases/${process.env.NOTION_DATABASE_ID}/query`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NOTION_TOKEN}`,
-          'Notion-Version': '2022-06-28',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          filter: {
-            and: [
-              { property: 'status', select: { equals: 'Published' } },
-              { property: 'type', select: { equals: 'Post' } }
-            ]
-          },
-          sorts: [{ property: 'date', direction: 'descending' }]
-        }),
-        // 利用 Next.js 內建的快取，每小時重新抓取一次
-        next: { revalidate: 3600 } 
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`API 錯誤: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return data.results.map((page: any) => ({
-      id: page.id,
-      title: page.properties.title?.title[0]?.plain_text || '無標題',
-      slug: page.properties.slug?.rich_text[0]?.plain_text || '',
-      summary: page.properties.summary?.rich_text[0]?.plain_text || '',
-      date: page.properties.date?.date?.start || '',
-    }));
-  } catch (error) {
-    console.error("抓取失敗:", error);
-    return [];
-  }
 }
