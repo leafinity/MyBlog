@@ -41,7 +41,7 @@ export default function Navbar() {
           </div>
 
           <Link href="/life" className="hover:text-[#E16B8C] transition-colors">生活</Link>
-          <Link href="/collectionn" className="hover:text-[#E16B8C] transition-colors">Instagram</Link>
+          <Link href="https://www.instagram.com/abbysresa/" className="hover:text-[#E16B8C] transition-colors">Instagram</Link>
         </div>
       </div>
     </nav>
