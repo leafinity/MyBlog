@@ -34,7 +34,7 @@ export async function getPublishedPosts() {
       slug: page.properties.slug?.rich_text[0]?.plain_text || '',
       summary: page.properties.summary?.rich_text[0]?.plain_text || '',
       date: page.properties.date?.date?.start || '',
-      imageUrl: getPostCoverUrl(post)
+      imageUrl: getPostCoverUrl(page)
     }));
   } catch (error) {
     console.error("抓取列表失敗:", error);
@@ -82,17 +82,11 @@ export async function getPageIdFromYourDatabase(slug: string) {
 export function getPostCoverUrl(post: any): string {
   let imageUrl = '';
 
-  // 直接鎖定你自訂的 Files & media 欄位 (cover 或 media)
   const customCover = post?.properties?.cover?.files?.[0];
-  const customMedia = post?.properties?.media?.files?.[0];
-
-  // 優先抓取 cover 欄位，沒有的話再抓 media 欄位
   if (customCover) {
     imageUrl = customCover.file?.url || customCover.external?.url || '';
-  } else if (customMedia) {
-    imageUrl = customMedia.file?.url || customMedia.external?.url || '';
   }
 
-  // 如果都沒有放圖片，給一張預設圖避免破版
-  return imageUrl || '/default-cover.jpg';
+  // 如果沒有放圖片，給一張預設圖避免破版
+  return imageUrl || '/[default-cover.jpg]';
 }
