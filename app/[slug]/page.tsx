@@ -37,8 +37,8 @@ async function getPageIdFromYourDatabase(slug: string) {
           filter: {
             and: [
               { property: 'slug', rich_text: { equals: slug } },
-              { property: 'status', select: { equals: 'Published' } },
-              { property: 'type', select: { equals: 'Post' } }
+              // { property: 'status', select: { equals: 'Published' } },
+              // { property: 'type', select: { equals: 'Post' } }
             ]
           }
         }),
