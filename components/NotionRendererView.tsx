@@ -1,3 +1,5 @@
+"use client";
+
 import { NotionRenderer } from 'react-notion-x';
 import 'react-notion-x/src/styles.css'; 
 
