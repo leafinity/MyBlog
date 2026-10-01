@@ -13,7 +13,7 @@
     "notion-client": "latest",
     "react-notion-x": "latest",
     "@notionhq/client": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
     "typescript": "latest",
