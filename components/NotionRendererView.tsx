@@ -59,7 +59,6 @@ export default function NotionRendererView({ recordMap }: { recordMap: any }) {
           color: #4b5563 !important;
         }
       `}} />
-
       <NotionRenderer recordMap={recordMap} />
     </div>
   );
