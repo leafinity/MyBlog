@@ -24,14 +24,35 @@ export default async function Home() {
       {latestPost && (
         <Link href={`/${latestPost.slug}`} className="block group mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 p-4 md:p-6">
+            
+            {/* 圖片區塊 */}
             <div className="h-64 md:h-[400px] w-full relative overflow-hidden rounded-xl">
-              <img src={latestPost.imageUrl} alt={latestPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={latestPost.imageUrl} alt={latestPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
             </div>
-            <div className="p-4 md:p-8 md:pr-12">
-              <p className="text-sm text-[#E16B8C] font-bold tracking-wider mb-3 uppercase">Latest</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-[#E16B8C] transition-colors leading-tight">{latestPost.title}</h2>
-              <p className="text-gray-600 mb-6 text-lg line-clamp-3 leading-relaxed">{latestPost.excerpt}</p>
-              <p className="text-sm text-gray-400 font-medium">{latestPost.date}</p>
+            
+            {/* 文字區塊 */}
+            <div className="p-4 md:p-8 md:pr-12 flex flex-col h-full justify-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-[#DC9FB4] transition-colors leading-tight">
+                {latestPost.title}
+              </h2>
+              
+              <p className="text-sm text-[#DC9FB4] mb-5 font-medium tracking-wide">
+                {latestPost.date}
+              </p>
+              
+              <p className="text-gray-600 mb-8 text-lg line-clamp-3 leading-relaxed">
+                {latestPost.summary}
+              </p>
+              
+              <p className="text-[#DC9FB4] text-md mb-6 transition-colors group-hover:text-gray-900">
+                閱讀全文 »
+              </p>
+              
+              {latestPost.tags && latestPost.tags.length > 0 && (
+                <div className="text-sm text-[#DC9FB4] mt-auto">
+                  {latestPost.tags.join(', ')}
+                </div>
+              )}
             </div>
           </div>
         </Link>
