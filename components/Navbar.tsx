@@ -10,7 +10,6 @@ export default function Navbar() {
           <img 
             src="/avatar.jpg" 
             alt="Abby's Avatar" 
-            // 這裡移除了外框，讓視覺更乾淨
             className="w-8 h-8 rounded-full object-cover group-hover:scale-105 transition-transform"
           />
           {/* 使用你專屬的 #E16B8C 作為 hover 顏色 */}
