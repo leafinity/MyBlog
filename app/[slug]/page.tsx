@@ -1,29 +1,9 @@
-import { NotionAPI } from 'notion-client';
-import NotionRendererView from '../NotionRendererView';
-
-export const revalidate = 3600;
-
-// 建立第二棒選手 (專門抓完整圖文內容)
-const notionX = new NotionAPI();
-
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  // 第一棒：去問官方資料庫，這篇文章的 ID 是多少？
-  const pageId = await getPageIdFromYourDatabase(params.slug);
-
-  if (!pageId) {
-    return <div className="text-center py-20">找不到這篇文章...</div>;
-  }
-
-  // 第二棒：拿到 ID 了，叫 notionX 去把這整頁的圖文內容 (recordMap) 抓回來
-  const recordMap = await notionX.getPage(pageId);
-
-  // 把豐富的內容丟給畫面元件去畫
-  return <NotionRendererView recordMap={recordMap} />;
-}
-
-// 第一棒的實作細節 (純原生 fetch，絕不當機)
 async function getPageIdFromYourDatabase(slug: string) {
   try {
+    // 確保網址沒有被亂編碼 (例如中文字或特殊符號)
+    const targetSlug = decodeURIComponent(slug);
+    console.log("🔍 網頁傳進來的目標 slug:", `"${targetSlug}"`);
+
     const response = await fetch(
       `https://api.notion.com/v1/databases/${process.env.NOTION_DATABASE_ID}/query`,
       {
@@ -33,28 +13,36 @@ async function getPageIdFromYourDatabase(slug: string) {
           'Notion-Version': '2022-06-28',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          filter: {
-            and: [
-              { property: 'slug', rich_text: { equals: slug } },
-              // { property: 'status', select: { equals: 'Published' } },
-              // { property: 'type', select: { equals: 'Post' } }
-            ]
-          }
-        }),
-        next: { revalidate: 3600 }
+        // 完全不寫 filter，叫 Notion 把資料庫的文章全吐出來
+        body: JSON.stringify({}),
+        // 開發除錯時先關閉快取，確保每次都抓最新的
+        cache: 'no-store' 
       }
     );
 
     if (!response.ok) return null;
 
     const data = await response.json();
-    if (data.results && data.results.length > 0) {
-      return data.results[0].id; // 成功找到 ID！
+    console.log(`📦 資料庫總共回傳了 ${data.results?.length} 篇文章`);
+
+    // 改用 JavaScript 原生的 find 來比對
+    const matchPage = data.results.find((page: any) => {
+      const pageSlug = page.properties.slug?.rich_text[0]?.plain_text;
+      return pageSlug === targetSlug;
+    });
+
+    if (matchPage) {
+      console.log("✅ 成功比對到文章！ID 是:", matchPage.id);
+      return matchPage.id;
+    } else {
+      console.log("❌ JavaScript 找遍了全部文章，還是沒有吻合的 slug");
+      // 印出前三篇文章的 slug 讓你檢查到底差在哪
+      const availableSlugs = data.results.slice(0, 3).map((p: any) => p.properties.slug?.rich_text[0]?.plain_text);
+      console.log("資料庫裡實際存的 slug 範例:", availableSlugs);
+      return null;
     }
-    return null;
   } catch (error) {
-    console.error("查無此文章:", error);
+    console.error("查詢發生錯誤:", error);
     return null;
   }
 }
