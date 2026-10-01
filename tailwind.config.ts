@@ -7,10 +7,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // 深一點的主色：用於標題 Hover 與「閱讀全文」
-      'brand-pink-main': '#DC9FB4', 
-      // 淺一點的副色：用於日期、標籤等小字
-      'brand-pink-light': '#F4A7B9',},
+      colors: {
+        // 深一點的主色：用於標題 Hover 與「閱讀全文」
+        'brand-pink-main': '#DC9FB4', 
+        // 淺一點的副色：用於日期、標籤等小字
+        'brand-pink-light': '#F4A7B9',
+      }
+    }
   },
   plugins: [],
 };

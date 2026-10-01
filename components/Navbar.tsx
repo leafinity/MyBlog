@@ -13,7 +13,7 @@ export default function Navbar() {
             className="w-8 h-8 rounded-full object-cover group-hover:scale-105 transition-transform"
           />
           {/* 使用你專屬的 #E16B8C 作為 hover 顏色 */}
-          <span className="font-extrabold text-xl tracking-tight text-gray-900 transition-colors" style={{ '--hover-color': '#E16B8C' } as React.CSSProperties}>
+          <span className="font-extrabold text-xl tracking-tight text-gray-900 transition-colors" style={{ '--hover-color': 'brand-pink-main' } as React.CSSProperties}>
             <span className="hover:text-[var(--hover-color)] transition-colors">Abby's Journey</span>
           </span>
         </Link>
