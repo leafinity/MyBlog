@@ -14,9 +14,9 @@ export default async function Home() {
     <div className="max-w-6xl mx-auto px-6 py-12">
       
       {/* Header 區塊 */}
-      <div className="flex justify-between items-end mb-12">
-        <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Blog</h1>
-        <p className="text-gray-500 text-sm hidden sm:block">Explore my latest journeys</p>
+      <div className="flex items-center mb-10 mt-4">
+        <h2 className="text-sm font-bold text-gray-900 tracking-wider uppercase mr-6">最新旅程</h2>
+        <div className="flex-grow border-t border-gray-200"></div>
       </div>
 
       {/* 最新文章 (大卡片) */}
