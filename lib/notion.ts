@@ -35,7 +35,7 @@ export async function getPublishedPosts() {
       summary: page.properties.summary?.rich_text[0]?.plain_text || '',
       date: page.properties.date?.date?.start || '',
       imageUrl: getPostCoverUrl(page),
-      summary: post.properties.Summary?.rich_text?.[0]?.plain_text || post.properties.summary?.rich_text?.[0]?.plain_text || '',
+      summary: page.properties.Summary?.rich_text?.[0]?.plain_text || post.properties.summary?.rich_text?.[0]?.plain_text || '',
       category: page.properties.Category?.select?.name || '',
       tags: page.properties.Tags?.multi_select?.map((tag: any) => tag.name) || []
     }));
