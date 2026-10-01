@@ -1,19 +1,19 @@
 import { NotionAPI } from 'notion-client';
 import NotionRendererView from '../NotionRendererView';
 
-// 確保 Vercel 永遠去抓最新資料
-export const revalidate = 0;
+export const revalidate = 3600;
 const notionX = new NotionAPI();
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  // 擋掉瀏覽器偷偷發出的 favicon 請求，避免干擾除錯
-  if (params.slug === 'favicon.ico') return null;
+// 1. 型別宣告 params 為 Promise
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  // 2. 關鍵：必須先 await 解開 params，否則 slug 會變成 undefined
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
 
-  const pageId = await getPageIdFromYourDatabase(params.slug);
+  const pageId = await getPageIdFromYourDatabase(slug);
 
   if (!pageId) {
-    // 這裡我們直接把網址傳進來的 slug 印在畫面上，讓你一眼看穿有沒有抓錯字
-    return <div className="text-center py-20">找不到這篇文章，目前尋找的目標是：{params.slug}</div>;
+    return <div className="text-center py-20">找不到文章，程式讀取到的目標 slug 是：{slug}</div>;
   }
 
   const recordMap = await notionX.getPage(pageId);
@@ -34,14 +34,14 @@ async function getPageIdFromYourDatabase(slug: string) {
         body: JSON.stringify({
           filter: {
             and: [
+              // 3. 現在 slug 是一個真實的字串，Notion 就能精準過濾了
               { property: 'slug', rich_text: { equals: slug } },
               { property: 'status', select: { equals: 'Published' } },
               { property: 'type', select: { equals: 'Post' } }
             ]
           }
         }),
-        // 這是最關鍵的一行！強迫 Next.js 絕對不可以使用之前權限錯誤時留下的快取
-        cache: 'no-store'
+        next: { revalidate: 3600 }
       }
     );
 
