@@ -1,6 +1,6 @@
 // app/page.tsx
 import Link from 'next/link';
-import { getPublishedPosts } from '@/lib/notion';
+import { getPublishedPosts } from '../lib/notion';
 
 export default async function HomePage() {
   // 畫面元件只負責呼叫，不負責管裡面怎麼抓的
