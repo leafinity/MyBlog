@@ -1,5 +1,5 @@
 import { NotionAPI } from 'notion-client';
-import NotionRendererView from '../NotionRendererView';
+import NotionRendererView from '../../components/NotionRendererView';
 
 export const revalidate = 3600;
 const notionX = new NotionAPI();
