@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getPublishedPosts } from '../lib/notion';
+import LoadMoreGrid from '../components/LoadMoreGrid';
 
 export default async function Home() {
   const posts = await getPublishedPosts();
