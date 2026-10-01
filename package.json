@@ -12,7 +12,8 @@
     "react-dom": "latest",
     "notion-client": "latest",
     "react-notion-x": "latest",
-    "@notionhq/client": "latest"
+    "@notionhq/client": "latest",
+    "tailwindcss": "latest",
   },
   "devDependencies": {
     "typescript": "latest",
