@@ -5,7 +5,7 @@ export default function NotionRendererView({ recordMap }: { recordMap: any }) {
   return (
     <div className="max-w-3xl mx-auto">
       {/* 既然你不必保留原生的 Callout，我們直接用純 CSS 把它們全部變身！ */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{ __html: `        
         /* 1. 隱藏預設圖示，消除原本 Callout 所有的預設樣式 */
         .notion-callout {
           background: transparent !important;
