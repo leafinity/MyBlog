@@ -13,7 +13,9 @@
     "notion-client": "latest",
     "react-notion-x": "latest",
     "@notionhq/client": "latest",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "postcss": "^8.4.35",
+    "autoprefixer": "^10.4.18"
   },
   "devDependencies": {
     "typescript": "latest",
