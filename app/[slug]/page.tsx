@@ -4,9 +4,7 @@ import NotionRendererView from '../../components/NotionRendererView';
 export const revalidate = 3600;
 const notionX = new NotionAPI();
 
-// 1. 型別宣告 params 為 Promise
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
-  // 2. 關鍵：必須先 await 解開 params，否則 slug 會變成 undefined
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
@@ -34,7 +32,6 @@ async function getPageIdFromYourDatabase(slug: string) {
         body: JSON.stringify({
           filter: {
             and: [
-              // 3. 現在 slug 是一個真實的字串，Notion 就能精準過濾了
               { property: 'slug', rich_text: { equals: slug } },
               { property: 'status', select: { equals: 'Published' } },
               { property: 'type', select: { equals: 'Post' } }
