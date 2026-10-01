@@ -1,6 +1,5 @@
 // app/page.tsx
 import Link from 'next/link';
-// 從剛才建立的工具箱把函式匯入
 import { getPublishedPosts } from '@/lib/notion';
 
 export default async function HomePage() {
