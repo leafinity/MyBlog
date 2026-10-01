@@ -20,7 +20,6 @@ export default function Navbar() {
 
         {/* 右側：導覽列選單 */}
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
-          <Link href="/" className="transition-colors hover:text-[#E16B8C]">首頁</Link>
           
           {/* 下拉式選單：旅遊 */}
           <div className="relative group py-6">
