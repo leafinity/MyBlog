@@ -1,54 +1,81 @@
 "use client";
 
+import { useEffect } from 'react';
 import { NotionRenderer } from 'react-notion-x';
 import 'react-notion-x/src/styles.css'; 
 
 export default function NotionRendererView({ recordMap }: { recordMap: any }) {
+  
+  useEffect(() => {
+    // 1. 只找 Callout，且精準比對裡面的 Icon 是不是 🗓️
+    const callouts = document.querySelectorAll('.notion-callout');
+    callouts.forEach(callout => {
+      const icon = callout.querySelector('.notion-page-icon');
+      if (icon && icon.textContent?.includes('🗓️')) {
+        // 2. 幫這個特定的 Callout 貼上我們專屬的標籤，絕對不會影響到其他內容
+        callout.classList.add('is-timeline-callout');
+      }
+    });
+  }, [recordMap]);
+
   return (
-    <div className="max-w-3xl mx-auto
-      /* ====================================================================
-         【魔法時間軸】
-         當 react-notion-x 遇到被設定為「粉紅背景」的圖文框時，
-         會自動加上 notion-pink_background 這個 class。
-         我們就利用這個特徵，將它從平凡的框框魔改成你的專屬時間軸！
-         ==================================================================== */
-         
-      /* 1. 消除原本圖文框的背景與邊框，加上左側 #E16B8C 專屬粉紅邊線 */
-      [&_.notion-callout.notion-pink_background]:bg-transparent
-      [&_.notion-callout.notion-pink_background]:border-0
-      [&_.notion-callout.notion-pink_background]:border-l-2
-      [&_.notion-callout.notion-pink_background]:border-[#E16B8C]
-      [&_.notion-callout.notion-pink_background]:ml-4
-      md:[&_.notion-callout.notion-pink_background]:ml-6
-      [&_.notion-callout.notion-pink_background]:pl-8
-      md:[&_.notion-callout.notion-pink_background]:pl-10
-      [&_.notion-callout.notion-pink_background]:py-2
-      [&_.notion-callout.notion-pink_background]:my-10
-      
-      /* 2. 隱藏原本圖文框自帶的 Icon，讓時間軸視覺更乾淨 */
-      [&_.notion-callout.notion-pink_background>.notion-page-icon]:hidden
-      
-      /* 3. 針對裡面的「標題三 (h3)」加上粉紅圓點與定位 */
-      [&_.notion-callout.notion-pink_background_.notion-h3]:relative
-      [&_.notion-callout.notion-pink_background_.notion-h3]:text-[#E16B8C]
-      [&_.notion-callout.notion-pink_background_.notion-h3]:font-bold
-      [&_.notion-callout.notion-pink_background_.notion-h3]:mt-8
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:content-['']
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:absolute
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:w-4
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:h-4
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:bg-[#E16B8C]
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:rounded-full
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:-left-[41px]
-      md:[&_.notion-callout.notion-pink_background_.notion-h3]:before:-left-[49px]
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:top-1.5
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:ring-4
-      [&_.notion-callout.notion-pink_background_.notion-h3]:before:ring-white
-      
-      /* 4. 確保內文與清單文字的顏色質感 */
-      [&_.notion-callout.notion-pink_background_.notion-text]:text-gray-700
-      [&_.notion-callout.notion-pink_background_.notion-ul]:text-gray-700
-    ">
+    <div className="max-w-3xl mx-auto">
+      <style dangerouslySetInnerHTML={{ __html: `
+        /* 1. 把這個特定的 Callout 外框與背景變透明 */
+        .is-timeline-callout {
+          background: transparent !important;
+          border: none !important;
+          padding: 0 !important;
+          margin: 40px 0 !important;
+        }
+        /* 隱藏原本那個超大的 🗓️ Icon */
+        .is-timeline-callout > .notion-page-icon {
+          display: none !important; 
+        }
+        
+        /* 2. 把 Callout 的內容區塊左側畫上一條貫穿的 #E16B8C 粉紅線 */
+        .is-timeline-callout .notion-callout-text {
+          border-left: 2px solid #E16B8C !important;
+          padding-left: 24px !important;
+          margin-left: 16px !important;
+        }
+
+        /* 3. 將 Callout 裡面的【標題三】變成灰色卡片的「上半部」 */
+        .is-timeline-callout .notion-h3 {
+          background-color: #f9fafb !important;
+          padding: 20px 20px 8px 20px !important;
+          border-radius: 12px 12px 0 0 !important;
+          margin-top: 24px !important;
+          position: relative !important;
+        }
+
+        /* 4. 畫出懸浮在粉紅線上的可愛圓點 */
+        .is-timeline-callout .notion-h3::before {
+          content: '🗓️';
+          position: absolute;
+          left: -41px; /* 精準對齊左側粉紅線 */
+          top: 16px;
+          background: #E16B8C;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          color: white;
+          border: 4px solid white;
+        }
+
+        /* 5. 將 Callout 裡面的【清單】變成灰色卡片的「下半部」 */
+        .is-timeline-callout .notion-ul {
+          background-color: #f9fafb !important;
+          padding: 0 20px 24px 40px !important; 
+          border-radius: 0 0 12px 12px !important;
+          margin-bottom: 24px !important;
+        }
+      `}} />
+
       <NotionRenderer recordMap={recordMap} />
     </div>
   );
