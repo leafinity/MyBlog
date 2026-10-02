@@ -39,16 +39,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 2. 探索分類 (其他文章) */}
-          <div className="col-span-1">
-            <h4 className="text-xs font-bold text-gray-900 tracking-wider uppercase mb-5">探索分類</h4>
-            <ul className="space-y-3">
-              <li><Link href="/category/sw" className="text-gray-500 hover:text-brand-pink-main text-sm transition-colors">瑞典旅遊</Link></li>
-              <li><Link href="/category/no" className="text-gray-500 hover:text-brand-pink-main text-sm transition-colors">挪威旅遊</Link></li>
-              <li><Link href="/category/eu" className="text-gray-500 hover:text-brand-pink-main text-sm transition-colors">歐洲其他</Link></li>
-              <li><Link href="/category/life" className="text-gray-500 hover:text-brand-pink-main text-sm transition-colors">瑞典生活</Link></li>
-            </ul>
-          </div>
+          {/* 2. 最新文章 */}
+          <FooterLatestPosts posts={latestPosts} />
 
         </div>
 
