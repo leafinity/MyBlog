@@ -26,7 +26,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       
       {/* 文章標題與日期 */}
       <header className="mb-12 text-center">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+        <h1 className="text-xl md:text-3xl font-extrabold text-gray-900 mb-6 leading-tight">
           {post.title}
         </h1>
         {post.type === 'Post' && (
@@ -44,9 +44,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {/* 動態渲染的標籤區塊 */}
       {post.tags && post.tags.length > 0 && (
         <div className="mt-16 pt-8 border-t border-gray-100">
-          <h3 className="text-sm font-bold text-gray-900 tracking-wider uppercase mb-4">
-            相關主題
-          </h3>
           <div className="flex flex-wrap gap-3">
             {post.tags.map((tag: string) => {
               const tagSlug = reverseTagMap[tag] || tag;
