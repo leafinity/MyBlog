@@ -57,7 +57,7 @@ export default async function Footer() {
           <p className="text-gray-400 text-xs">
             © {new Date().getFullYear()} Abby's Journey 所有作品與內容版權所有
           </p>
-          <Link href="/privacy-policy" className="text-gray-400 hover:text-brand-pink-main text-xs transition-colors tracking-wide">
+          <Link href="/privacy-policy" className="text-brand-pink-main hover:text-brand-pink-light text-xs transition-colors tracking-wide">
             隱私權政策
           </Link>
         </div>
