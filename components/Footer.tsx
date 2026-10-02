@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import FooterLatestPosts from './FooterLatestPosts';
 
-export default function Footer() {
+export default async function Footer() {
   
   const posts = await getPublishedPosts();
   const latestPosts = posts.slice(0, 5);
