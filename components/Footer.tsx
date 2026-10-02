@@ -2,6 +2,10 @@ import Link from 'next/link';
 import FooterLatestPosts from './FooterLatestPosts';
 
 export default function Footer() {
+  
+  const posts = await getPublishedPosts();
+  const latestPosts = posts.slice(0, 5);
+  
   return (
     <footer className="bg-white border-t border-gray-100 pt-16 pb-8 mt-20">
       <div className="max-w-6xl mx-auto px-6">
