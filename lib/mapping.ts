@@ -1,7 +1,7 @@
 export const categoryMap: Record<string, string> = {
   'sw': '瑞典旅遊',
   'no': '挪威旅遊',
-  'eu': '歐洲其他',
+  'eu': '歐洲旅遊',
   'life': '瑞典生活',
 };
 
