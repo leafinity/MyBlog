@@ -1,5 +1,5 @@
 import { NotionAPI } from 'notion-client';
-import { getPostBySlug } from '../lib/notion';
+import { getPostBySlug } from '../../lib/notion';
 import NotionRendererView from '../../components/NotionRendererView';
 import { reverseTagMap } from '../../lib/mapping';
 
@@ -27,9 +27,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
           {post.title}
         </h1>
-        <p className="text-brand-pink-main font-medium tracking-wide">
-          {post.date}
-        </p>
+        {post.type === 'Post' && (
+          <p className="text-brand-pink-main font-medium tracking-wide">
+            {post.date}
+          </p>
+        )}
       </header>
 
       {/* Notion 文章內容 */}

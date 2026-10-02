@@ -58,7 +58,7 @@ export async function getPostBySlug(slug: string) {
     title: page.properties.title?.title[0]?.plain_text || '無標題',
     date: page.properties.date?.date?.start || '',
     tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || [],
-    recordMap,
+    type: page.properties.type?.select?.name || 'Unknown';
   };
 }
 
