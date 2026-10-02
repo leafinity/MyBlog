@@ -17,8 +17,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     return <div className="text-center py-20">找不到文章</div>;
   }
 
-  const recordMap = await notionX.getPage(post.id);
-
   return (
     <article className="max-w-4xl mx-auto px-6 py-12 md:py-20">
       
