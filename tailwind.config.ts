@@ -10,8 +10,8 @@ const config: Config = {
       colors: {
         // 深一點的主色：用於標題 Hover 與「閱讀全文」
         'brand-pink-main': '#E16B8C', 
-        // 淺一點的副色：用於日期、標籤等小字
-        'brand-pink-light': '#F4A7B9',
+        // 淺一點的副色：用於日期、標籤等小字 previous: '#F4A7B9'
+        'brand-pink-light': '#F596AA',
       }
     }
   },
