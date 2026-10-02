@@ -9,13 +9,13 @@ export default async function Footer() {
   
   return (
     <footer className="bg-white border-t border-gray-100 pt-16 pb-8 mt-20">
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6">
         
-        {/* 品牌、社群與連結 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        {/* 品牌、社群與新文章連結 */}
+        <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
           
           {/* 1. 品牌與社群 */}
-          <div className="col-span-1 md:col-span-1">
+          <div className="w-full md:w-1/3">
             <h3 className="text-xl font-extrabold text-gray-900 tracking-tight mb-4">Abby's Journey</h3>
             <p className="text-gray-500 text-sm mb-6 leading-relaxed max-w-sm">
               Explore my latest journeys in Sweden, Norway, and beyond.
@@ -46,7 +46,7 @@ export default async function Footer() {
           </div>
 
           {/* 2. 最新文章 */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="w-full md:w-auto md:ml-auto md:max-w-xl">
             <FooterLatestPosts posts={latestPosts} />
           </div>
 
