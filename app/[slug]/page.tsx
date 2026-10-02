@@ -4,6 +4,7 @@ import NotionRendererView from '../../components/NotionRendererView';
 export const revalidate = 3600;
 const notionX = new NotionAPI();
 
+// posts or pages
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
@@ -34,7 +35,10 @@ async function getPageIdFromYourDatabase(slug: string) {
             and: [
               { property: 'slug', rich_text: { equals: slug } },
               { property: 'status', select: { equals: 'Published' } },
-              { property: 'type', select: { equals: 'Post' } }
+              or: [
+                { property: 'type', select: { equals: 'Post' } },
+                { property: 'type', select: { equals: 'Page' } }
+              ]
             ]
           }
         }),
