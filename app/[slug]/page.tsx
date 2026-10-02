@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { NotionAPI } from 'notion-client';
 import { getPostBySlug } from '../../lib/notion';
 import NotionRendererView from '../../components/NotionRendererView';
@@ -16,7 +17,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   if (!post) {
     return <div className="text-center py-20">找不到文章</div>;
   }
-
+  
+  const notionX = new NotionAPI();
   const recordMap = await notionX.getPage(post.id);
 
   return (
