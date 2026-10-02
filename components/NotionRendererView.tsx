@@ -98,6 +98,7 @@ export default function NotionRendererView({ recordMap }: { recordMap: any }) {
             })}
           </div>
         </div>
+      )}
     </div>
   );
 }
