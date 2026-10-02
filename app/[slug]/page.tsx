@@ -1,5 +1,6 @@
 import { NotionAPI } from 'notion-client';
 import NotionRendererView from '../../components/NotionRendererView';
+import { reverseTagMap } from '../../lib/mapping';
 
 export const revalidate = 3600;
 const notionX = new NotionAPI();
