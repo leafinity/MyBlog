@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '../components/Navbar';
 import ScrollToTop from "../components/ScrollToTop";
-import ScrollToTop from "../components/Footer";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "Abby's Journey",
