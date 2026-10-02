@@ -52,14 +52,12 @@ export async function getPostBySlug(slug: string) {
   if (results.length === 0) return null;
 
   const page = results[0];
-  const recordMap = await notionX.getPage(page.id);
   return {
     id: page.id,
     title: page.properties.title?.title[0]?.plain_text || '無標題',
     date: page.properties.date?.date?.start || '',
     tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || [],
     type: page.properties.type?.select?.name || 'Unknown',
-    recordMap: recordMap
   };
 }
 

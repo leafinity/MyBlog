@@ -17,6 +17,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     return <div className="text-center py-20">找不到文章</div>;
   }
 
+  const recordMap = await notionX.getPage(post.id);
+
   return (
     <article className="max-w-4xl mx-auto px-6 py-12 md:py-20">
       
@@ -34,7 +36,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {/* Notion 文章內容 */}
       <div className="prose prose-lg max-w-none prose-pink">
-        <NotionRendererView recordMap={post.recordMap} />
+        <NotionRendererView recordMap={recordMap} />
       </div>
 
       {/* 動態渲染的標籤區塊 */}
