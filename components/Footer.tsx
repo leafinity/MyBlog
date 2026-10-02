@@ -9,7 +9,7 @@ export default async function Footer() {
   
   return (
     <footer className="bg-white border-t border-gray-100 pt-16 pb-8 mt-20">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         
         {/* 品牌、社群與連結 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
