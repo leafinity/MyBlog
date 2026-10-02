@@ -32,14 +32,14 @@ export default function Navbar() {
             {/* 子選單 */}
             <div className="absolute right-0 top-full mt-[-8px] w-36 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
               <div className="py-2 bg-white rounded-xl shadow-lg border border-gray-100 flex flex-col text-center">
-                <Link href="/sw" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">瑞典旅遊</Link>
-                <Link href="/no" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">挪威旅遊</Link>
-                <Link href="/eu" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">歐洲其他</Link>
+                <Link href="/category/sw" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">瑞典旅遊</Link>
+                <Link href="/category/no" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">挪威旅遊</Link>
+                <Link href="/category/eu" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">歐洲其他</Link>
               </div>
             </div>
           </div>
 
-          <Link href="/life" className="hover:text-[#E16B8C] transition-colors">生活</Link>
+          <Link href="/category/life" className="hover:text-[#E16B8C] transition-colors">生活</Link>
           <Link href="https://www.instagram.com/abbysresa/" className="hover:text-[#E16B8C] transition-colors">Instagram</Link>
         </div>
       </div>
