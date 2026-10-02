@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ScrollToTop from "FooterLatestPosts";
 
 export default function Footer() {
   return (
