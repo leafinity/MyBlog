@@ -34,8 +34,8 @@ export default function ScrollToTop() {
       // 使用 Tailwind 設定位置、顏色與優雅的淡入淡出動畫
       className={`
         fixed bottom-8 right-8 z-50 p-3 rounded-full 
-        bg-white border-2 border-brand-pink-light text-brand-pink-main 
-        shadow-lg hover:shadow-xl hover:bg-brand-pink-main hover:text-white hover:border-brand-pink-main 
+        bg-brand-pink-main text-white 
+        shadow-lg hover:shadow-xl hover:bg-brand-pink-light
         transition-all duration-300 ease-in-out
         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
       `}
