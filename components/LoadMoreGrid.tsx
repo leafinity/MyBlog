@@ -31,7 +31,7 @@ export default function LoadMoreGrid({ posts }: { posts: any[] }) {
                 {post.summary}
               </p>
               
-              <p className="text-brand-pink-main text-sm mb-4 transition-colors group-hover:text-gray-900">
+              <p className="text-gray-900 text-sm mb-4 transition-colors group-hover:text-brand-pink-main">
                 閱讀全文 »
               </p>
               

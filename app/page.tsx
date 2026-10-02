@@ -46,7 +46,7 @@ export default async function Home() {
               </p>
               
               {/* 閱讀全文 hover 使用主色 (深粉) */}
-              <p className=" text-md mb-6 transition-colors group-hover:text-gray-900">
+              <p className=" text-md mb-6 transition-colors text-gray-900 group-hover:text-brand-pink-main">
                 閱讀全文 »
               </p>
               
