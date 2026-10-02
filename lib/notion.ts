@@ -40,12 +40,6 @@ export async function getPostBySlug(slug: string) {
     and: [
       { property: 'slug', rich_text: { equals: slug } },
       { property: 'status', select: { equals: 'Published' } },
-      {
-        or: [
-          { property: 'type', select: { equals: 'Post' } },
-          { property: 'type', select: { equals: 'Page' } }
-        ]
-      }
     ]
   });
 
