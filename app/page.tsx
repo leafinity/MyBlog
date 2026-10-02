@@ -22,40 +22,41 @@ export default async function Home() {
 
       {/* 最新文章 (大卡片) */}
       {latestPost && (
-        <Link href={`/${latestPost.slug}`} className="block group mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 p-4 md:p-6">
+        <Link 
+            href={`/${post.slug}`} 
+            key={post.id} 
+            className="group flex flex-col h-full bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50 overflow-hidden">
             
-            <div className="h-64 md:h-[400px] w-full relative overflow-hidden rounded-xl">
-              <img src={latestPost.imageUrl} alt={latestPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
-            </div>
+          <div className="h-64 md:h-[400px] w-full relative overflow-hidden rounded-xl">
+            <img src={latestPost.imageUrl} alt={latestPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+          </div>
             
-            <div className="p-4 md:p-8 md:pr-12 flex flex-col h-full justify-center">
+          <div className="p-4 md:p-8 md:pr-12 flex flex-col h-full justify-center">
               
-              {/* 標題 hover 使用主色 (深粉) */}
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-brand-pink-main transition-colors leading-tight">
-                {latestPost.title}
-              </h2>
+            {/* 標題 hover 使用主色 (深粉) */}
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-brand-pink-main transition-colors leading-tight">
+              {latestPost.title}
+            </h2>
               
-              {/* 日期使用副色 (淺粉) */}
-              <p className="text-sm text-brand-pink-light mb-5 font-medium tracking-wide">
-                {latestPost.date}
-              </p>
+            {/* 日期使用副色 (淺粉) */}
+            <p className="text-sm text-brand-pink-light mb-5 font-medium tracking-wide">
+              {latestPost.date}
+            </p>
               
-              <p className="text-gray-600 mb-8 text-lg line-clamp-3 leading-relaxed">
-                {latestPost.summary}
-              </p>
+            <p className="text-gray-600 mb-8 text-lg line-clamp-3 leading-relaxed">
+              {latestPost.summary}
+            </p>
               
-              {/* 閱讀全文 hover 使用主色 (深粉) */}
-              <p className=" text-md mb-6 transition-colors group-hover:text-gray-900 group-hover:text-brand-pink-main">
-                閱讀全文 »
-              </p>
+            {/* 閱讀全文 hover 使用主色 (深粉) */}
+            <p className=" text-md mb-6 transition-colors group-hover:text-gray-900 group-hover:text-brand-pink-main">
+              閱讀全文 »
+            </p>
               
-              {/* 標籤小字使用副色 (淺粉) */}
-              <div className="text-sm text-brand-pink-light mt-auto">
-                {[latestPost.category, ...(latestPost.tags || [])]
-                  .filter(Boolean) 
-                  .join(', ')}
-              </div>
+            {/* 標籤小字使用副色 (淺粉) */}
+            <div className="text-sm text-brand-pink-light mt-auto">
+              {[latestPost.category, ...(latestPost.tags || [])]
+                .filter(Boolean) 
+                .join(', ')}
             </div>
           </div>
         </Link>
