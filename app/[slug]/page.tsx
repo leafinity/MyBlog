@@ -43,7 +43,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {/* 動態渲染的標籤區塊 */}
       {post.tags && post.tags.length > 0 && (
-        <div className="mt-16 pt-8 border-t border-gray-100">
+        <div className="mt-16 pt-8">
           <div className="flex flex-wrap gap-3">
             {post.tags.map((tag: string) => {
               const tagSlug = reverseTagMap[tag] || tag;
