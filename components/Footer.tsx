@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import FooterLatestPosts from "FooterLatestPosts";
+import FooterLatestPosts from './FooterLatestPosts';
 
 export default function Footer() {
   return (
