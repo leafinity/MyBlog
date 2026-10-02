@@ -11,11 +11,11 @@ export default async function Footer() {
     <footer className="bg-white border-t border-gray-100 pt-16 pb-8 mt-20">
       <div className="max-w-6xl mx-auto px-6">
         
-        {/* 上半部：品牌、社群與連結 */}
+        {/* 品牌、社群與連結 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           
           {/* 1. 品牌與社群 */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 md:col-span-1">
             <h3 className="text-xl font-extrabold text-gray-900 tracking-tight mb-4">Abby's Journey</h3>
             <p className="text-gray-500 text-sm mb-6 leading-relaxed max-w-sm">
               Explore my latest journeys in Sweden, Norway, and beyond.
@@ -46,22 +46,21 @@ export default async function Footer() {
           </div>
 
           {/* 2. 最新文章 */}
-          <FooterLatestPosts posts={latestPosts} />
+          <div className="col-span-1 md:col-span-2">
+            <FooterLatestPosts posts={latestPosts} />
+          </div>
 
         </div>
 
-        {/* 下半部：版權宣告與隱私權政策 */}
-        <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-xs mb-4 md:mb-0">
+        {/* 版權宣告與隱私權政策 */}
+        <div className="pt-8 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
+          <p className="text-gray-400 text-xs">
             © {new Date().getFullYear()} Abby's Journey 所有作品與內容版權所有
           </p>
-          
-          {/* 指向 Notion 生成的隱私權政策路由 */}
           <Link href="/privacy-policy" className="text-gray-400 hover:text-brand-pink-main text-xs transition-colors tracking-wide">
             隱私權政策
           </Link>
         </div>
-        
       </div>
     </footer>
   );

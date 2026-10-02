@@ -16,11 +16,8 @@ export default function FooterLatestPosts({ posts }: { posts: any[] }) {
       {filteredPosts.map((post) => (
         <li key={post.id}>
           <Link href={`/${post.slug}`} className="group block">
-            <p className="text-gray-600 group-hover:text-brand-pink-main text-sm transition-colors line-clamp-2 leading-snug">
+            <p className="text-brand-pink-main group-hover:text-brand-pink-light text-sm transition-colors line-clamp-2 leading-snug">
               {post.title}
-            </p>
-            <p className="text-xs text-brand-pink-light mt-1.5 font-medium tracking-wide">
-              {post.date}
             </p>
           </Link>
         </li>
