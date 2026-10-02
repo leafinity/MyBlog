@@ -8,9 +8,9 @@ export default function LoadMoreGrid({ posts }: { posts: any[] }) {
 
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 gap-y-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12">
         {posts.slice(0, displayCount).map((post) => (
-          <Link href={`/${post.slug}`} key={post.id} className="group flex flex-col h-full">
+          <Link href={`/${post.slug}`} key={post.id} className="group flex flex-col h-full bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-5 border border-gray-50 overflow-hidden">
             
             <div className="w-full aspect-[4/3] overflow-hidden mb-6 relative bg-gray-100">
               <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
