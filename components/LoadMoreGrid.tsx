@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function LoadMoreGrid({ posts }: { posts: any[] }) {
-  const [displayCount, setDisplayCount] = useState(6);
+  const [displayCount, setDisplayCount] = useState(9);
 
   return (
     <div>
@@ -48,7 +48,7 @@ export default function LoadMoreGrid({ posts }: { posts: any[] }) {
       {displayCount < posts.length && (
         <div className="mt-20 text-center">
           <button
-            onClick={() => setDisplayCount(prev => prev + 6)}
+            onClick={() => setDisplayCount(prev => prev + 9)}
             className="px-8 py-3 text-sm font-bold tracking-wider text-gray-600 uppercase transition-all bg-white border-2 border-gray-200 rounded-full hover:border-gray-900 hover:text-gray-900"
           >
             載入更多文章
