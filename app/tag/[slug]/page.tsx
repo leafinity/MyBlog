@@ -1,4 +1,4 @@
-import { getPostsByCategory } from '../../../lib/notion';
+import { getPostsByTag } from '../../../lib/notion';
 import LoadMoreGrid from '../../../components/LoadMoreGrid';
 import { tagMap } from '../../../lib/mapping';
 
@@ -11,7 +11,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   // 核心魔法：去字典查出對應的中文，查不到就退回原字串
   const currentTag = tagMap[slug] || decodeURIComponent(slug);
   
-  const filteredPosts = await getPostsByCategory(currentCategory);
+  const filteredPosts = await getPostsByTag(currentTag);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
