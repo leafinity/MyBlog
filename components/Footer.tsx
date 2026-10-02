@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getPublishedPosts } from '../lib/notion';
 import FooterLatestPosts from './FooterLatestPosts';
 
 export default async function Footer() {

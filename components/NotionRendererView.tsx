@@ -6,18 +6,6 @@ import 'react-notion-x/src/styles.css';
 export default function NotionRendererView({ recordMap }: { recordMap: any }) {
   return (
     <div className="max-w-3xl mx-auto">
-
-      {/* 文章標題與日期 */}
-      <header className="mb-12 text-center">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-          {post.title}
-        </h1>
-        <p className="text-brand-pink-main font-medium tracking-wide">
-          {post.date}
-        </p>
-      </header>
-
-    
       {/* 既然你不必保留原生的 Callout，我們直接用純 CSS 把它們全部變身！ */}
       <style dangerouslySetInnerHTML={{ __html: `        
         /* 1. 隱藏預設圖示，消除原本 Callout 所有的預設樣式 */
@@ -74,31 +62,6 @@ export default function NotionRendererView({ recordMap }: { recordMap: any }) {
         }
       `}} />
       <NotionRenderer recordMap={recordMap} />
-
-      {/* 標籤區塊 */}
-      {post.tags && post.tags.length > 0 && (
-        <div className="mt-16 pt-8 border-t border-gray-100">
-          <h3 className="text-sm font-bold text-gray-900 tracking-wider uppercase mb-4">
-            相關主題
-          </h3>
-          <div className="flex flex-wrap gap-3">
-            {post.tags.map((tag: string) => {
-              // 利用反向字典找出英文 slug，查不到就 fallback 用原字串
-              const tagSlug = reverseTagMap[tag] || tag;
-
-              return (
-                <Link 
-                  key={tag} 
-                  href={`/tag/${tagSlug}`} 
-                  className="text-sm font-bold tracking-wider text-brand-pink-main bg-brand-pink-main/10 px-4 py-2 rounded-full uppercase transition-colors hover:bg-brand-pink-main hover:text-white"
-                >
-                  #{tag}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
