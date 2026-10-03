@@ -7,7 +7,8 @@ export default function EnLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>      <header className="max-w-4xl mx-auto px-6 py-8 flex justify-between items-center">
+    <>     
+      <header className="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between">
         <span className="font-extrabold text-xl tracking-tight text-gray-900">
           Abby's Journey
         </span>
