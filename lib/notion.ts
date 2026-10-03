@@ -1,5 +1,8 @@
 // lib/notion.ts
 
+const zhDatabaseID = process.env.NOTION_DATABASE_ID!
+const enDatabaseID = process.env.NOTION_DATABASE_EN_ID!
+
 // 獲取首頁的文章列表
 export async function getPublishedPosts() {
   const results = await queryNotionDatabase(

@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { getPublishedPosts } from '../lib/notion';
-import LoadMoreGrid from '../components/LoadMoreGrid';
+import { getPublishedPosts } from '../../lib/notion';
+import LoadMoreGrid from '../../components/LoadMoreGrid';
 
 export default async function Home() {
   const posts = await getPublishedPosts();
@@ -16,7 +16,7 @@ export default async function Home() {
       
       {/* Header 區塊 */}
       <div className="flex items-center mb-10 mt-4">
-        <h2 className="text-sm font-bold text-gray-900 tracking-wider uppercase mr-6">最新旅程</h2>
+        <h2 className="text-sm font-bold text-gray-900 tracking-wider uppercase mr-6">The Latest Post</h2>
         <div className="flex-grow border-t border-gray-200"></div>
       </div>
 
@@ -63,7 +63,7 @@ export default async function Home() {
 
       {/* 極簡分隔線與區塊標題 */}
       <div className="flex items-center mb-10 mt-4">
-        <h2 className="text-sm font-bold text-gray-900 tracking-wider uppercase mr-6">所有文章</h2>
+        <h2 className="text-sm font-bold text-gray-900 tracking-wider uppercase mr-6">All Posts</h2>
         <div className="flex-grow border-t border-gray-200"></div>
       </div>
 
