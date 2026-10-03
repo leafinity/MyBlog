@@ -12,7 +12,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  const post = await getPostBySlug(resolvedParams.slug);
+  const post = await getPostBySlug(resolvedParams.slug, 'en');
 
   if (!post) {
     return <div className="text-center py-20">Not found.</div>;

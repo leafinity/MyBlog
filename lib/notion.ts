@@ -3,8 +3,13 @@
 const zhDatabaseID = process.env.NOTION_DATABASE_ID!
 const enDatabaseID = process.env.NOTION_DATABASE_EN_ID!
 
+const dbMap: Record<string, string> = {
+  zh: zhDatabaseID,
+  en: enDatabaseID,
+};
+
 // 獲取首頁的文章列表
-export async function getPublishedPosts() {
+export async function getPublishedPosts(lang: 'zh' | 'en' = 'zh') {
   const results = await queryNotionDatabase(
     {
       and: [
@@ -12,7 +17,8 @@ export async function getPublishedPosts() {
         { property: 'type', select: { equals: 'Post' } }
       ]
     },
-    [{ property: 'date', direction: 'descending' }]
+    [{ property: 'date', direction: 'descending' }],
+    lang
   );
 
   // 2. 將回傳結果 Mapping 成你要的格式
@@ -38,12 +44,14 @@ export async function getPostsByTag(tag: string) {
   return allPosts.filter((post: any) => post.tags?.includes(tag));
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string, lang: 'zh' | 'en' = 'zh') {
   const results = await queryNotionDatabase({
     and: [
       { property: 'slug', rich_text: { equals: slug } },
       { property: 'status', select: { equals: 'Published' } },
-    ]
+    ],
+    undefined,
+    lang
   });
 
   if (results.length === 0) return null;
@@ -58,7 +66,10 @@ export async function getPostBySlug(slug: string) {
   };
 }
 
-async function queryNotionDatabase(filter: any, sorts?: any[]) {
+async function queryNotionDatabase(filter: any, sorts?: any[], lang: 'zh' | 'en' = 'zh') {
+
+  const targetDbId = dbMap[lang];
+  
   try {
     const body: any = { filter };
     if (sorts) {
@@ -66,7 +77,7 @@ async function queryNotionDatabase(filter: any, sorts?: any[]) {
     }
 
     const response = await fetch(
-      `https://api.notion.com/v1/databases/${process.env.NOTION_DATABASE_ID}/query`,
+      `https://api.notion.com/v1/databases/${targetDbId}/query`,
       {
         method: 'POST',
         headers: {

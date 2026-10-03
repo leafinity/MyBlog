@@ -3,7 +3,7 @@ import { getPublishedPosts } from '../../lib/notion';
 import LoadMoreGrid from '../../components/LoadMoreGrid';
 
 export default async function Home() {
-  const posts = await getPublishedPosts();
+  const posts = await getPublishedPosts('en')
 
   if (!posts || posts.length === 0) return <div className="text-center py-20">尚無文章</div>;
 
