@@ -45,14 +45,16 @@ export async function getPostsByTag(tag: string) {
 }
 
 export async function getPostBySlug(slug: string, lang: 'zh' | 'en' = 'zh') {
-  const results = await queryNotionDatabase({
-    and: [
-      { property: 'slug', rich_text: { equals: slug } },
-      { property: 'status', select: { equals: 'Published' } },
-    ],
+  const results = await queryNotionDatabase(
+    {
+      and: [
+        { property: 'slug', rich_text: { equals: slug } },
+        { property: 'status', select: { equals: 'Published' } },
+      ]
+    },
     undefined,
     lang
-  });
+  );
 
   if (results.length === 0) return null;
 
