@@ -52,7 +52,7 @@ export default async function EnFooter() {
           <p className="text-gray-400 text-xs">
             © {new Date().getFullYear()} Abby's Journey All Images & Content Reserved.
           </p>
-          <Link href="/privacy-policy" className="text-brand-pink-main hover:text-brand-pink-light text-xs transition-colors tracking-wide">
+          <Link href="/en/privacy-policy" className="text-brand-pink-main hover:text-brand-pink-light text-xs transition-colors tracking-wide">
             Privacy Policy
           </Link>
         </div>
