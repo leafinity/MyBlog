@@ -1,5 +1,5 @@
 import Link from 'next/link';
-// 不需要引入 NavbarEn 或 Footer 了！
+import Footer from "../../components/ENFooter";
 
 export default function EnLayout({
   children,
@@ -23,10 +23,12 @@ export default function EnLayout({
           中文版 (ZH)
         </Link>
       </header>
-      
+
 
       {/* 這是文章內容區塊 */}
       <main className="flex-grow pb-20">{children}</main>
+
+      <ENFooter />
     </>
   );
 }
