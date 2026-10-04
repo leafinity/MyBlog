@@ -17,9 +17,8 @@ export default async function Footer() {
           {/* 1. 品牌與社群 */}
           <div className="w-full md:w-1/3">
             <div className="flex items-center gap-3 mb-4">
-              {/* 你的大頭貼 Icon (跟 Navbar 用同一張) */}
               <img 
-                src="/favicon.jpg" 
+                src="/favicon.png" 
                 alt="Abby's Avatar" 
                 className="w-7 h-7 rounded-full object-cover"
               />

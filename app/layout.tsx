@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Abby's Journey",
   description: "Explore my latest journeys in Sweden, Norway, and beyond. 北歐健行與攝影紀錄",
   icons: {
-    icon: '/favicon.jpg', 
+    icon: '/favicon.png', 
   },
 };
 
