@@ -16,7 +16,17 @@ export default async function Footer() {
           
           {/* 1. 品牌與社群 */}
           <div className="w-full md:w-1/3">
-            <h3 className="text-xl font-extrabold text-gray-900 tracking-tight mb-4">Abby's Journey</h3>
+            <div className="flex items-center gap-3 mb-4">
+              {/* 你的大頭貼 Icon (跟 Navbar 用同一張) */}
+              <img 
+                src="/favicon.jpg" 
+                alt="Abby's Avatar" 
+                className="w-7 h-7 rounded-full object-cover"
+              />
+              <h3 className="text-xl font-extrabold text-gray-900 tracking-tight">
+                Abby's Journey
+              </h3>
+            </div>
             <p className="text-gray-500 text-sm mb-6 leading-relaxed max-w-sm">
               Explore my latest journeys in Sweden, Norway, and beyond.
             </p>
