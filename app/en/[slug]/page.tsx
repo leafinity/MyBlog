@@ -10,8 +10,7 @@ const notionX = new NotionAPI();
 // posts or pages
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const cleanSlug = resolvedParams.slug.replace(/^en\//, '');
-
+  const cleanSlug = resolvedParams.slug;
   const post = await getPostBySlug(resolvedParams.slug, 'en');
 
   if (!post) {

@@ -86,7 +86,10 @@ async function queryNotionDatabase(filter: any, sorts?: any[], lang: 'zh' | 'en'
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
-        next: { revalidate: 3600 }
+        next: { 
+          revalidate: 3600,
+          tags: [`notion-database-${lang}`],
+        }
       }
     );
 
