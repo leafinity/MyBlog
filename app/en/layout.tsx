@@ -9,7 +9,7 @@ export default function EnLayout({
   return (
     <>     
       <header className="max-w-4xl mx-auto px-6 py-8 flex items-center justify-end gap-6">
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/en" className="flex items-center gap-3 group">
           <img 
             src="/avatar.jpg" 
             alt="Abby's Avatar" 
