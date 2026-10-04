@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Footer from "../../components/ENFooter";
+import EnFooter from "../../components/EnFooter";
 
 export default function EnLayout({
   children,
@@ -28,7 +28,7 @@ export default function EnLayout({
       {/* 這是文章內容區塊 */}
       <main className="flex-grow pb-20">{children}</main>
 
-      <ENFooter />
+      <EnFooter />
     </>
   );
 }
