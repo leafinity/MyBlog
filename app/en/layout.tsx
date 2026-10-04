@@ -8,11 +8,11 @@ export default function EnLayout({
 }) {
   return (
     <>     
-      <header className="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between">
-        <span className="font-extrabold text-xl tracking-tight text-gray-900">
+      <header className="max-w-4xl mx-auto px-6 py-8 flex items-center justify-end gap-6">
+        <span className="font-extrabold text-xl tracking-tight text-gray-900 mr-auto">
           Abby's Journey
         </span>
-        <Link href="/" className="text-sm text-gray-400 hover:text-[#DC9FB4] transition-colors">
+        <Link href="/" className="text-sm text-gray-400 hover:text-[#DC9FB4] transition-colors whitespace-nowrap">
           中文版 (ZH)
         </Link>
       </header>
