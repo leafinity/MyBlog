@@ -22,9 +22,9 @@ export default function Navbar() {
           
           {/* 下拉式選單：旅遊 */}
           <div className="relative group py-6">
-            <button className="flex items-center transition-colors cursor-pointer hover:text-[#E16B8C]">
+            <button className="flex items-center transition-colors cursor-pointer hover:text-brand-pink-main">
               旅遊
-              <svg className="w-4 h-4 ml-1 text-gray-400 group-hover:text-[#E16B8C] transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 ml-1 text-gray-400 group-hover:text-brand-pink-main transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -32,15 +32,15 @@ export default function Navbar() {
             {/* 子選單 */}
             <div className="absolute right-0 top-full mt-[-8px] w-36 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
               <div className="py-2 bg-white rounded-xl shadow-lg border border-gray-100 flex flex-col text-center">
-                <Link href="/category/sw" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">瑞典旅遊</Link>
-                <Link href="/category/no" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">挪威旅遊</Link>
-                <Link href="/category/eu" className="px-4 py-2 hover:bg-gray-50 hover:text-[#E16B8C] transition-colors">歐洲其他</Link>
+                <Link href="/category/sw" className="px-4 py-2 hover:bg-gray-50 hover:text-brand-pink-main transition-colors">瑞典旅遊</Link>
+                <Link href="/category/no" className="px-4 py-2 hover:bg-gray-50 hover:text-brand-pink-main transition-colors">挪威旅遊</Link>
+                <Link href="/category/eu" className="px-4 py-2 hover:bg-gray-50 hover:text-brand-pink-main transition-colors">歐洲其他</Link>
               </div>
             </div>
           </div>
 
-          <Link href="/category/life" className="hover:text-[#E16B8C] transition-colors">生活</Link>
-          <Link href="https://www.instagram.com/abbysresa/" className="hover:text-[#E16B8C] transition-colors">Instagram</Link>
+          <Link href="/category/life" className="hover:text-brand-pink-main transition-colors">生活</Link>
+          <Link href="https://www.instagram.com/abbysresa/" className="hover:text-brand-pink-main transition-colors">Instagram</Link>
         </div>
       </div>
     </nav>
