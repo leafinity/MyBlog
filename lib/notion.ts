@@ -28,7 +28,7 @@ export async function getPublishedPosts(lang: 'zh' | 'en' = 'zh') {
     slug: page.properties.slug?.rich_text[0]?.plain_text || '',
     summary: page.properties.summary?.rich_text[0]?.plain_text || '',
     date: page.properties.date?.date?.start || '',
-    imageUrl: getPostCoverUrl(page), // 記得確保這個函式存在
+    imageUrl: getPostCoverUrl(page),
     category: page.properties.category?.select?.name || '',
     tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || []
   }));
@@ -65,6 +65,8 @@ export async function getPostBySlug(slug: string, lang: 'zh' | 'en' = 'zh') {
     date: page.properties.date?.date?.start || '',
     tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || [],
     type: page.properties.type?.select?.name || 'Unknown',
+    summary: page.properties.summary?.rich_text[0]?.plain_text || '',
+    imageUrl: getPostCoverUrl(page),
   };
 }
 
