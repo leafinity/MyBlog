@@ -109,6 +109,22 @@ async function queryNotionDatabase(filter: any, sorts?: any[], lang: 'zh' | 'en'
 }
 
 function getPostCoverUrl(post: any): string {
+  const cloudinaryUrl = post?.properties?.cover_url?.url;
+  if (cloudinaryUrl) {
+    return cloudinaryUrl;
+  }
+
+  // Fallback: 沒填就讀原本的 cover (Files & media 屬性)
+  const customCover = post?.properties?.cover?.files?.[0];
+  if (customCover) {
+    const fallbackUrl = customCover.file?.url || customCover.external?.url;
+    if (fallbackUrl) return fallbackUrl;
+  }
+
+  return '/default-cover.jpg';
+}
+
+function getPostCoverUrl(post: any): string {
   let imageUrl = '';
 
   const customCover = post?.properties?.cover?.files?.[0];
