@@ -123,15 +123,3 @@ function getPostCoverUrl(post: any): string {
 
   return '/default-cover.jpg';
 }
-
-function getPostCoverUrl(post: any): string {
-  let imageUrl = '';
-
-  const customCover = post?.properties?.cover?.files?.[0];
-  if (customCover) {
-    imageUrl = customCover.file?.url || customCover.external?.url || '';
-  }
-
-  // 如果沒有放圖片，給一張預設圖避免破版
-  return imageUrl || '/default-cover.jpg';
-}
