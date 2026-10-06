@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { NotionAPI } from 'notion-client';
 import { getPostBySlug } from '../../../lib/notion';
 import NotionRendererView from '../../../components/NotionRendererView';
@@ -6,6 +7,44 @@ import { reverseTagMap } from '../../../lib/mapping';
 
 export const revalidate = 3600;
 const notionX = new NotionAPI();
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "文章未找到 - Abby's Journey",
+    };
+  }
+
+  return {
+    title: `${post.title} | Abby's Journey`,
+    description: post.summary || '點擊閱讀完整文章',
+    openGraph: {
+      title: post.title,
+      description: post.summary || '點擊閱讀完整文章',
+      images: [
+        {
+          url: {post.imageUrl},
+          alt: post.title,
+        },
+      ],
+      type: 'article',
+      publishedTime: post.date,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.summary,
+      images: [ogImage],
+    },
+  };
+}
 
 // posts or pages
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
