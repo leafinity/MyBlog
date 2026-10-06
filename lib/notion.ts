@@ -116,12 +116,12 @@ function getPostCoverUrl(post: any): string {
     return cloudinaryUrl;
   }
 
-  // // Fallback: 沒填就讀原本的 cover (Files & media 屬性)
-  // const customCover = post?.properties?.cover?.files?.[0];
-  // if (customCover) {
-  //   const fallbackUrl = customCover.file?.url || customCover.external?.url;
-  //   if (fallbackUrl) return fallbackUrl;
-  // }
+  // Fallback: 沒填就讀原本的 cover (Files & media 屬性)
+  const customCover = post?.properties?.cover?.files?.[0];
+  if (customCover) {
+    const fallbackUrl = customCover.file?.url || customCover.external?.url;
+    if (fallbackUrl) return fallbackUrl;
+  }
 
   return '/default-cover.jpg';
 }
