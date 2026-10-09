@@ -88,8 +88,8 @@ export async function getAlbums() {
     slug: page.properties.slug?.title[0]?.plain_text || '',
     titleZH: page.properties.title_zh?.rich_text[0]?.plain_text || '',
     titleEN: page.properties.title_en?.rich_text[0]?.plain_text || '',
-    coverUrl: page.properties.cover?.url || ''
-    date: page.properties.date?.date?.start
+    coverUrl: page.properties.cover?.url || '',
+    date: page.properties.date?.date?.start,
   }));
 }
 
