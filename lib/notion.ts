@@ -131,7 +131,7 @@ async function queryNotionDatabase(filter: any, sorts?: any[], dbType: DatabaseT
         body: JSON.stringify(body),
         next: { 
           revalidate: 3600,
-          tags: [`notion-database-${lang}`],
+          tags: [`notion-database-${dbType}`],
         }
       }
     );
