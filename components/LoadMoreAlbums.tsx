@@ -2,13 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-
-interface Album {
-  slug: string;
-  titleZH: string;
-  titleEN: string;
-  coverUrl: string;
-}
+import { Album } from '../lib/notion';
 
 export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: Album[], lang?: 'zh' | 'en' }) {
   const itemsPerPage = 9;
