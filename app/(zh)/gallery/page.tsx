@@ -1,5 +1,5 @@
-import { getAlbums } from '@/lib/notion';
-import LoadMoreAlbums from '@/components/LoadMoreAlbums';
+import { getPostBySlug } from '../../../lib/notion';
+import LoadMoreAlbums from '../../..//components/LoadMoreAlbums';
 
 export const revalidate = 3600;
 
@@ -21,7 +21,6 @@ export default async function GalleryIndexPage() {
       {albums.length === 0 ? (
         <div className="text-center text-gray-500 py-20">目前尚無相簿資料</div>
       ) : (
-        // 直接把資料丟給 LoadMoreAlbums 渲染
         <LoadMoreAlbums albums={albums} lang="zh" />
       )}
 
