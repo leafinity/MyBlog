@@ -17,8 +17,8 @@ export default function EnNavbar() {
 
         {/* 右側：導覽列選單 */}
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
+          <Link href="/en/gallery" className="hover:text-brand-pink-main transition-colors">Instagram</Link>
           <Link href="https://www.instagram.com/abbysresa/" className="hover:text-brand-pink-main transition-colors">Instagram</Link>
-          {/* 下拉式選單：旅遊 */}
           <Link href="/" className="text-sm text-gray-400 hover:text-brand-pink-main transition-colors whitespace-nowrap">
             中文版 (ZH)
           </Link>

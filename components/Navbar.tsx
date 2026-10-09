@@ -40,6 +40,7 @@ export default function Navbar() {
           </div>
 
           <Link href="/category/life" className="hover:text-brand-pink-main transition-colors">生活</Link>
+          <Link href="/gallery" className="hover:text-brand-pink-main transition-colors">相簿</Link>
           <Link href="https://www.instagram.com/abbysresa/" className="hover:text-brand-pink-main transition-colors">Instagram</Link>
         </div>
       </div>
