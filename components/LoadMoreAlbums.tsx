@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Album } from '../lib/notion';
 
-export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: albums: any[], lang?: 'zh' | 'en' }) {
+export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: any[], lang?: 'zh' | 'en' }) {
   const itemsPerPage = 9;
   const [displayCount, setDisplayCount] = useState(itemsPerPage);
 
