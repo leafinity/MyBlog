@@ -10,10 +10,9 @@ interface Album {
   coverUrl: string;
 }
 
-const displayCount = 9
-
 export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: Album[], lang?: 'zh' | 'en' }) {
-  const [displayCount, setDisplayCount] = useState({displayCount});
+  const itemsPerPage = 9;
+  const [displayCount, setDisplayCount] = useState({itemsPerPage});
 
   return (
     <div>
@@ -47,7 +46,7 @@ export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: Album[
       {displayCount < albums.length && (
         <div className="mt-20 text-center">
           <button
-            onClick={() => setDisplayCount(prev => prev + {displayCount})}
+            onClick={() => setDisplayCount(prev => prev + {itemsPerPage})}
             className="px-8 py-3 text-sm font-bold tracking-wider text-gray-600 uppercase transition-all bg-white border-2 border-gray-200 rounded-full hover:border-gray-900 hover:text-gray-900"
           >
             {lang === 'zh' ? '載入更多相簿' : 'Load More Albums'}
