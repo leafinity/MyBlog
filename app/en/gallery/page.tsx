@@ -1,5 +1,4 @@
-
-import { getPostBySlug } from '../../../lib/notion';
+import { getAlbums } from '../../../lib/notion';
 import LoadMoreAlbums from '../../..//components/LoadMoreAlbums';
 
 export const revalidate = 3600;

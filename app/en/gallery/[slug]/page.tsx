@@ -1,5 +1,5 @@
-import { getPhotosByAlbum, getAlbums } from '@/lib/notion';
-import MasonryGallery from '@/components/MasonryGallery';
+import { getPhotosByAlbum, getAlbums } from '../../../../lib/notion';
+import MasonryGallery from '../../../../components/MasonryGallery';
 import Link from 'next/link';
 
 export const revalidate = 3600;
