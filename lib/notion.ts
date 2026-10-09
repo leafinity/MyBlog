@@ -1,12 +1,19 @@
 // lib/notion.ts
 
+// 建立 database 對應表
 const zhDatabaseID = process.env.NOTION_DATABASE_ID!
 const enDatabaseID = process.env.NOTION_DATABASE_EN_ID!
+const galleryAlbumsDbID = process.env.NOTION_GALLERY_ALBUMS_DB_ID!;
+const galleryPhotosDbID = process.env.NOTION_GALLERY_PHOTOS_DB_ID!;
 
 const dbMap: Record<string, string> = {
-  zh: zhDatabaseID,
-  en: enDatabaseID,
+  'zh': zhDatabaseID,
+  'en': enDatabaseID,
+  'gallery-albums': galleryAlbumsDbID,
+  'gallery-photos': galleryPhotosDbID,
 };
+
+type DatabaseType = 'zh' | 'en' | 'gallery-albums' | 'gallery-photos';
 
 // 獲取首頁的文章列表
 export async function getPublishedPosts(lang: 'zh' | 'en' = 'zh') {
@@ -70,9 +77,40 @@ export async function getPostBySlug(slug: string, lang: 'zh' | 'en' = 'zh') {
   };
 }
 
-async function queryNotionDatabase(filter: any, sorts?: any[], lang: 'zh' | 'en' = 'zh') {
+export async function getAlbums() {
+  const results = await queryNotionDatabase(
+    { property: 'status', select: { equals: 'Published' } },
+    [{ property: 'date', direction: 'descending' }],
+    'gallery-albums'
+  );
 
-  const targetDbId = dbMap[lang];
+  return results.map((page: any) => ({
+    slug: page.properties.slug?.title[0]?.plain_text || '',
+    titleZH: page.properties.title_zh?.rich_text[0]?.plain_text || '',
+    titleEN: page.properties.title_en?.rich_text[0]?.plain_text || '',
+    coverUrl: page.properties.cover?.url || ''
+  }));
+}
+
+export async function getPhotosByAlbum(tripSlug: string) {
+  const results = await queryNotionDatabase(
+    {
+      and: [
+        { property: 'Trip_Slug', select: { equals: tripSlug } }
+      ]
+    },
+    undefined,
+    'gallery-photos'
+  );
+
+  return results.map((page: any) => ({
+    url: page.properties.Photo_URL?.url || page.properties.Photo_URL?.rich_text[0]?.plain_text || '',
+  }));
+}
+
+async function queryNotionDatabase(filter: any, sorts?: any[], dbType: DatabaseType = 'zh') {
+
+  const targetDbId = dbMap[dbType];
   
   try {
     const body: any = { filter };
