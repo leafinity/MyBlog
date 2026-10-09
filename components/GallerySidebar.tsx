@@ -1,7 +1,6 @@
 "use client";
 
 import Link from 'next/link';
-import { Album } from '../lib/notion';
 
 export default function GallerySidebar({ 
   albums, 
