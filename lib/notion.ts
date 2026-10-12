@@ -80,12 +80,12 @@ export async function getPostBySlug(slug: string, lang: 'zh' | 'en' = 'zh') {
 export async function getAlbums() {
   const results = await queryNotionDatabase(
     undefined,
-    undefined,
+    [{ property: 'date', direction: 'descending' }],
     'gallery-albums'
   );
   return results.map((page: any) => ({
     slug: page.properties.slug?.select?.name || '',
-    titleZH: page.properties.title?.title[0]?.plain_text || '無標題',
+    titleZH: page.properties.title_zh?.title[0]?.plain_text || '無標題',
     titleEN: page.properties.title_en?.rich_text[0]?.plain_text || 'Untitled',
     coverUrl: page.properties.cover?.url || '',
     date: page.properties.date?.date?.start,
