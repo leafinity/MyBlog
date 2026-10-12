@@ -21,7 +21,7 @@ export default function GallerySidebar({
           {/* 左箭頭圖示 */}
           <Link 
             href="/gallery"
-            className="text-gray-400 hover:text-brand-pink-main transition-colors block"
+            className="text-brand-pink-light hover:text-gray-600 transition-colors block"
             aria-label={lang === 'zh' ? '返回相簿牆' : 'Back to Albums'}
           >
             <svg 
