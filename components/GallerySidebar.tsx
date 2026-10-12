@@ -15,26 +15,28 @@ export default function GallerySidebar({
     <aside className="hidden md:block w-64 flex-shrink-0 mr-12">
       <div className="sticky top-24">
 
-        {/* 左箭頭圖示 */}
-        <Link 
-          href="/gallery"
-          className="text-gray-400 hover:text-brand-pink-main transition-colors block"
-          aria-label={lang === 'zh' ? '返回相簿牆' : 'Back to Albums'}
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="h-6 w-6" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor" 
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          </Link>
-
         <ul className="space-y-4">
-            {albums.map((album) => {
+
+        <li>
+          {/* 左箭頭圖示 */}
+          <Link 
+            href="/gallery"
+            className="text-gray-400 hover:text-brand-pink-main transition-colors block"
+            aria-label={lang === 'zh' ? '返回相簿牆' : 'Back to Albums'}
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-6 w-6" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor" 
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            </Link>
+          </li>
+          {albums.map((album) => {
             const isSelected = currentSlug === album.slug;
             return (
               <li key={album.slug}>
