@@ -13,7 +13,7 @@ export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: any[],
         {/* 瀑布流多欄佈局 */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-8">
           {albums.slice(0, displayCount).map((album) => {
-            const formattedDate = album.date ? album.date.replace('-', '.') : '';
+            const formattedDate = album.date ? album.date.slice(0, 7).replace('-', '.') : '';
 
             return (
               <Link 
@@ -34,13 +34,13 @@ export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: any[],
 
                   {/* 標題與年月日期區塊 */}
                   <div className="absolute bottom-4 left-4 right-4 z-10 flex items-baseline justify-between gap-3">
-                    <h3 className="text-white font-medium text-lg drop-shadow-md line-clamp-1 group-hover:text-[#F596AA] transition-colors">
+                    <h3 className="text-white font-medium text-lg drop-shadow-md line-clamp-1 group-hover:text-brand-pink-main transition-colors">
                       {lang === 'zh' ? album.titleZH : album.titleEN}
                     </h3>
                     
                     {/* 顯示年月，字體較小且具備微光陰影 */}
                     {formattedDate && (
-                      <span className="text-gray-300 text-xs shrink-0 drop-shadow-sm font-light">
+                      <span className="text-brand-pink-light text-xs shrink-0 drop-shadow-sm font-light">
                         {formattedDate}
                       </span>
                     )}
