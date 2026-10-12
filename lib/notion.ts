@@ -85,7 +85,7 @@ export async function getAlbums() {
   );
 
   return results.map((page: any) => ({
-    slug: page.properties.slug?.title[0]?.plain_text || '',
+    slug: page.properties.slug?.select?.name || '',
     titleZH: page.properties.title_zh?.rich_text[0]?.plain_text || '',
     titleEN: page.properties.title_en?.rich_text[0]?.plain_text || '',
     coverUrl: page.properties.cover?.url || '',
