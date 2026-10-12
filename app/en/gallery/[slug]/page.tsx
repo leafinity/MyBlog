@@ -16,7 +16,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ slug: st
 
   return (
     // 最外層加入 flex，讓 Sidebar 跟瀑布流左右並排
-    <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-20 bg-[#fafafa] min-h-screen flex flex-col md:flex-row">
+    <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-20 min-h-screen flex flex-col md:flex-row">
       
       {/* 左側：插入 Sidebar，並傳入目前的 slug */}
       <GallerySidebar albums={albums} currentSlug={slug} lang={lang} />
@@ -29,7 +29,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ slug: st
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 inline-block">
             {currentAlbum.titleEN}
           </h1>
-          <div className="w-12 h-1 bg-brand-pink-main rounded-full"></div>
+          <div className="w-12 h-1"></div>
         </div>
 
         {/* 瀑布流元件 */}

@@ -29,7 +29,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ slug: st
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 inline-block">
             {currentAlbum.titleZH}
           </h1>
-          <div className="w-12 h-1 bg-brand-pink-main rounded-full"></div>
+          <div className="w-12 h-1"></div>
         </div>
 
         {/* 瀑布流元件 */}

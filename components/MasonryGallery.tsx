@@ -18,7 +18,7 @@ export default function MasonryGallery({ photos }: { photos: any[] }) {
             <img 
               src={photo.url} 
               alt={photo.alt} 
-              className="w-full rounded-xl object-cover hover:opacity-90 transition-opacity duration-300 bg-gray-100" 
+              className="w-full object-cover hover:opacity-90 transition-opacity duration-300 bg-gray-100" 
               loading="lazy"
             />
           </div>
@@ -30,7 +30,7 @@ export default function MasonryGallery({ photos }: { photos: any[] }) {
         <div className="mt-20 text-center">
           <button
             onClick={() => setDisplayCount(prev => prev + 9)} // 每次多載入 9 張
-            className="px-8 py-3 text-sm font-bold tracking-wider text-gray-600 uppercase transition-all bg-white border-2 border-gray-200 rounded-full hover:border-gray-900 hover:text-gray-900"
+            className="px-8 py-3 text-sm font-bold tracking-wider text-gray-600 uppercase transition-all bg-white border-2 border-gray-200 rounded-full hover:hover:border-brand-pink-main hover:text-gray-900"
           >
             載入更多照片
           </button>
