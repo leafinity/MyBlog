@@ -45,7 +45,7 @@ export default function GallerySidebar({
                   className={`text-sm transition-colors duration-200 block line-clamp-1 ${
                     isSelected
                       ? 'text-brand-pink-main font-medium' 
-                      : 'text-brand-pink-light hover:text-gray-950'
+                      : 'text-brand-pink-light hover:text-gray-600'
                   }`}
                 >
                   {lang === 'zh' ? album.titleZH : album.titleEN}
