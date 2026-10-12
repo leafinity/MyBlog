@@ -79,8 +79,8 @@ export async function getPostBySlug(slug: string, lang: 'zh' | 'en' = 'zh') {
 
 export async function getAlbums() {
   const results = await queryNotionDatabase(
+    { property: 'status', select: { equals: 'Published' } },
     undefined,
-    [{ property: 'date', direction: 'descending' }],
     'gallery-albums'
   );
   return results.map((page: any) => ({
