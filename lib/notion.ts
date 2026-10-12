@@ -103,10 +103,10 @@ export async function getPhotosByAlbum(tripSlug: string) {
     'gallery-photos'
   );
 
-  const url = page.properties.url?.url || '',
+  const url = page.properties.url?.url || '';
   return results.map((page: any) => ({
     url: url,
-    cloudinaryUrl: optimizeCloudinaryUrl(url, 800)
+    cloudinaryUrl: optimizeCloudinaryUrl(url, 800),
     alt: page.properties.alt.title[0]?.plain_text || 'photo',
   }));
 }
