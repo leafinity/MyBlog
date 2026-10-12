@@ -103,13 +103,14 @@ export async function getPhotosByAlbum(tripSlug: string) {
     'gallery-photos'
   );
 
-  return results.map((page: any) => (
+  return results.map((page: any) => {
     const url = page.properties.url?.url || '';
     return {
       url: url,
       cloudinaryUrl: optimizeCloudinaryUrl(url, 800),
       alt: page.properties.alt.title[0]?.plain_text || 'photo',
-    }));
+    };
+  });
 }
 
 async function queryNotionDatabase(filter: any, sorts?: any[], dbType: DatabaseType = 'zh') {
