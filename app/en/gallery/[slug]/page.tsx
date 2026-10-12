@@ -27,20 +27,22 @@ export default async function AlbumPage({ params }: { params: Promise<{ slug: st
         {/* 標題區塊 */}
         <div className="mb-12 relative">
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 inline-block">
-            {currentAlbum ? currentAlbum.titleZH : slug}
+            {currentAlbum.titleEN}
           </h1>
           <div className="w-12 h-1 bg-brand-pink-main rounded-full"></div>
         </div>
 
         {/* 瀑布流元件 */}
         {(!photos || photos.length === 0) ? (
-          <div className="text-center py-20 text-gray-500 bg-white rounded-2xl border border-gray-100 shadow-sm">
-            The album is empty
+          <div className="py-20 text-gray-400 text-sm tracking-wide">
+            The albums is empty.
           </div>
         ) : (
-          <MasonryGallery photos={photos} />
+          <d(
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
+            <MasonryGallery photos={photos} />
+          </div>
         )}
-
       </main>
     </div>
   );

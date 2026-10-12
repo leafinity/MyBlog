@@ -96,7 +96,7 @@ export async function getPhotosByAlbum(tripSlug: string) {
   const results = await queryNotionDatabase(
     {
       and: [
-        { property: 'Trip_Slug', select: { equals: tripSlug } }
+        { property: 'slug', select: { equals: tripSlug } }
       ]
     },
     undefined,
@@ -104,7 +104,8 @@ export async function getPhotosByAlbum(tripSlug: string) {
   );
 
   return results.map((page: any) => ({
-    url: page.properties.Photo_URL?.url || page.properties.Photo_URL?.rich_text[0]?.plain_text || '',
+    url: page.properties.url?.url || page.properties.Photo_URL?.rich_text[0]?.plain_text || '',
+    alt: page.properties.alt.title[0]?.plain_text || 'photo',
   }));
 }
 
