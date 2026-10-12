@@ -26,7 +26,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ slug: st
       <div className="mb-12 text-center relative">
         <Link 
           href="/gallery" 
-          className="absolute left-0 top-1/2 -translate-y-1/2 text-sm text-gray-400 hover:text-[#DC9FB4] transition-colors uppercase tracking-wider font-bold hidden md:block"
+          className="absolute left-0 top-1/2 -translate-y-1/2 text-sm text-gray-400 hover:text-brand-pink-main transition-colors uppercase tracking-wider font-bold hidden md:block"
         >
           ← Gallery
         </Link>

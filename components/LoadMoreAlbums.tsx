@@ -40,7 +40,7 @@ export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: any[],
                     
                     {/* 顯示年月，字體較小且具備微光陰影 */}
                     {formattedDate && (
-                      <span className="text-brand-pink-light text-xs shrink-0 drop-shadow-sm font-light">
+                      <span className="text-gray-300 text-xs shrink-0 drop-shadow-sm font-light hover:brand-pink-light transition-colors">
                         {formattedDate}
                       </span>
                     )}
