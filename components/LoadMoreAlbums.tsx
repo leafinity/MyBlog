@@ -13,7 +13,7 @@ export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: any[],
         {albums.slice(0, displayCount).map((album) => (
           <Link href={`/gallery/${album.slug}`} key={album.slug} className="group block">
             
-            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-gray-100 shadow-sm border border-gray-100">
+            <div className="relative w-full aspect-[5/4] rounded-2xl overflow-hidden mb-5 bg-gray-100 shadow-sm border border-gray-100">
               <img 
                 src={album.coverUrl || '/default-cover.jpg'} 
                 alt={lang === 'zh' ? album.titleZH : album.titleEN} 
