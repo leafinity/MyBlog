@@ -70,6 +70,5 @@ export default function MasonryGallery({ photos }: { photos: any[] }) {
         </div>
       )}
     </div>
-    </div>
   );
 }
