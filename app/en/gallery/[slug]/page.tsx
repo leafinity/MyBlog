@@ -8,7 +8,7 @@ export const revalidate = 3600;
 export default async function AlbumPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
-  const lang = 'zh'; 
+  const lang = 'en'; 
   
   const photos = await getPhotosByAlbum(slug);
   const albums = await getAlbums();
@@ -18,10 +18,10 @@ export default async function AlbumPage({ params }: { params: Promise<{ slug: st
     // 最外層加入 flex，讓 Sidebar 跟瀑布流左右並排
     <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-20 bg-[#fafafa] min-h-screen flex flex-col md:flex-row">
       
-      {/* 1. 左側：插入我們剛寫好的 Sidebar，並傳入目前的 slug */}
-      <GallerySidebar currentSlug={slug} lang={lang} />
+      {/* 左側：插入 Sidebar，並傳入目前的 slug */}
+      <GallerySidebar albums={albums} currentSlug={slug} lang={lang} />
 
-      {/* 2. 右側：主要的瀑布流區塊 */}
+      {/* 右側：主要的瀑布流區塊 */}
       <main className="flex-grow">
         
         {/* 標題區塊 */}
@@ -35,7 +35,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ slug: st
         {/* 瀑布流元件 */}
         {(!photos || photos.length === 0) ? (
           <div className="text-center py-20 text-gray-500 bg-white rounded-2xl border border-gray-100 shadow-sm">
-            此相簿目前沒有照片
+            The album is empty
           </div>
         ) : (
           <MasonryGallery photos={photos} />
