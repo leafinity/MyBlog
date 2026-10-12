@@ -21,7 +21,7 @@ export default function GallerySidebar({
           {/* 左箭頭圖示 */}
           <Link 
             href="/gallery"
-            className="text-brand-pink-light hover:text-gray-600 transition-colors block"
+            className="text-brand-pink-light hover:text-gray-400 transition-colors block"
             aria-label={lang === 'zh' ? '返回相簿牆' : 'Back to Albums'}
           >
             <svg 
@@ -45,7 +45,7 @@ export default function GallerySidebar({
                   className={`text-base transition-colors duration-200 block line-clamp-1 ${
                     isSelected
                       ? 'text-brand-pink-main font-medium' 
-                      : 'text-brand-pink-light hover:text-gray-600'
+                      : 'text-brand-pink-light hover:text-gray-400'
                   }`}
                 >
                   {lang === 'zh' ? album.titleZH : album.titleEN}
