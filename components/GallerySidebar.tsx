@@ -12,38 +12,38 @@ export default function GallerySidebar({
   lang?: 'zh' | 'en' 
 }) {
   return (
-    <aside className="hidden md:block w-64 flex-shrink-0 pr-10 border-r border-gray-100 mr-10">
+    <aside className="hidden md:block w-64 flex-shrink-0 mr-12">
       <div className="sticky top-24">
-        <ul>
+
         {/* 左箭頭圖示 */}
-        <li>
-          <Link 
-            href="/gallery"
-            className="text-gray-400 hover:text-brand-pink-main transition-colors block"
-            aria-label={lang === 'zh' ? '返回相簿牆' : 'Back to Albums'}
+        <Link 
+          href="/gallery"
+          className="text-gray-400 hover:text-brand-pink-main transition-colors block"
+          aria-label={lang === 'zh' ? '返回相簿牆' : 'Back to Albums'}
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor" 
+            strokeWidth={2}
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-6 w-6" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor" 
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            </Link>
-          </li>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          </Link>
+
+        <ul className="space-y-4">
             {albums.map((album) => {
             const isSelected = currentSlug === album.slug;
             return (
               <li key={album.slug}>
                 <Link
                   href={`/gallery/${album.slug}`}
-                  className={`text-sm transition-all duration-200 block line-clamp-1 px-3 py-2 ${
+                  className={`text-sm transition-colors duration-200 block line-clamp-1 ${
                     isSelected
-                      ? 'bg-brand-pink-main text-white font-medium shadow-sm'
-                      : 'text-gray-500 hover:bg-brand-pink-light hover:text-white'
+                      ? 'text-brand-pink-main font-medium' 
+                      : 'text-brand-pink-light hover:text-gray-950'
                   }`}
                 >
                   {lang === 'zh' ? album.titleZH : album.titleEN}
