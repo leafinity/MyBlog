@@ -42,7 +42,7 @@ export default function GallerySidebar({
                   href={`/gallery/${album.slug}`}
                   className={`text-sm transition-all duration-200 block line-clamp-1 px-3 py-2 rounded-xl ${
                     isSelected
-                      ? 'bg-brand-pink-main text-white font-medium shadow-sm hover:bg-brand-pink-light'
+                      ? 'bg-brand-pink-main text-white font-medium shadow-sm'
                       : 'text-gray-500 hover:bg-brand-pink-light hover:text-white'
                   }`}
                 >
