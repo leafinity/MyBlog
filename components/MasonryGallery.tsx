@@ -2,14 +2,7 @@
 
 import { useState } from 'react';
 
-// 定義照片的資料結構
-interface Photo {
-  id: string;
-  url: string;
-  location: string;
-}
-
-export default function MasonryGallery({ photos }: { photos: Photo[] }) {
+export default function MasonryGallery({ photos }: { photos: any[] }) {
   // 1. 控制載入更多的數量 (預設顯示 9 張)
   const [displayCount, setDisplayCount] = useState(9);
 
