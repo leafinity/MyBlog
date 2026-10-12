@@ -10,32 +10,45 @@ export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: any[],
   return (
     <div>
       <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* 手機 1 欄、平板 2 欄、電腦 3 欄 */}
+        {/* 瀑布流多欄佈局 */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-8">
-          {albums.slice(0, displayCount).map((album) => (
-            <Link 
-              href={`/gallery/${album.slug}`} 
-              key={album.slug} 
-              className="break-inside-avoid mb-8 group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50 overflow-hidden"
-            >
-              <div className="w-full overflow-hidden relative bg-gray-100">
-                <img
-                  src={album.coverUrl}
-                  alt={lang === 'zh' ? album.titleZH : album.titleEN}
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
+          {albums.slice(0, displayCount).map((album) => {
+            const formattedDate = album.date ? album.date.replace('-', '.') : '';
 
-                {/* 標題浮在照片上 */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+            return (
+              <Link 
+                href={`/gallery/${album.slug}`} 
+                key={album.slug} 
+                className="break-inside-avoid mb-8 group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
+              >
+                {/* 照片容器 */}
+                <div className="w-full overflow-hidden relative bg-gray-100">
+                  <img
+                    src={album.coverUrl}
+                    alt={lang === 'zh' ? album.titleZH : album.titleEN}
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
 
-                <div className="absolute bottom-4 left-4 right-4 z-10">
-                  <h3 className="text-white font-medium text-lg drop-shadow-md line-clamp-1">
-                    {lang === 'zh' ? album.titleZH : album.titleEN}
-                  </h3>
+                  {/* 底部深色漸層陰影，確保淺色照片文字清晰 */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+
+                  {/* 標題與年月日期區塊 */}
+                  <div className="absolute bottom-4 left-4 right-4 z-10 flex items-baseline justify-between gap-3">
+                    <h3 className="text-white font-medium text-lg drop-shadow-md line-clamp-1 group-hover:text-[#F596AA] transition-colors">
+                      {lang === 'zh' ? album.titleZH : album.titleEN}
+                    </h3>
+                    
+                    {/* 顯示年月，字體較小且具備微光陰影 */}
+                    {formattedDate && (
+                      <span className="text-gray-300 text-xs shrink-0 drop-shadow-sm font-light">
+                        {formattedDate}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
 
