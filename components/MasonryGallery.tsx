@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function MasonryGallery({ photos }: { photos: any[] }) {
   // 1. 控制載入更多的數量 (預設顯示 9 張)
   const [displayCount, setDisplayCount] = useState(9);
+  const [activePhoto, setActivePhoto] = useState<any | null>(null);
 
   return (
     <div>
@@ -14,7 +15,10 @@ export default function MasonryGallery({ photos }: { photos: any[] }) {
           <div 
             key={photo.id} 
             className="break-inside-avoid relative group mb-6"
+            onClick={() => setActivePhoto(photo)}
           >
+            
+          
             <img 
               src={photo.cloudinaryUrl} 
               alt={photo.alt} 
