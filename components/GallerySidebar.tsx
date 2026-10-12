@@ -14,11 +14,6 @@ export default function GallerySidebar({
   return (
     <aside className="hidden md:block w-64 flex-shrink-0 pr-10 border-r border-gray-100 mr-10">
       <div className="sticky top-24">
-
-        <h3 className="text-sm font-extrabold text-gray-900 uppercase tracking-widest mb-6">
-          {lang === 'zh' ? '所有相簿' : 'All Albums'}
-        </h3>
-        
         <ul className="space-y-4">
         {/* 左箭頭圖示 */}
         <li>
@@ -39,23 +34,23 @@ export default function GallerySidebar({
             </svg>
             </Link>
           </li>
-          
-          <div className="w-8 h-px bg-gray-200 my-4"></div>
-
-          {albums.map((album) => (
-            <li key={album.slug}>
-              <Link 
-                href={`/gallery/${album.slug}`}
-                className={`text-sm transition-colors block line-clamp-1 ${
-                  currentSlug === album.slug 
-                    ? 'font-bold text-brand-pink-main'
-                    : 'text-gray-500 hover:text-brand-pink-light'
-                }`}
-              >
-                {lang === 'zh' ? album.titleZH : album.titleEN}
-              </Link>
-            </li>
-          ))}
+            {albums.map((album) => {
+            const isSelected = currentSlug === album.slug;
+            return (
+              <li key={album.slug}>
+                <Link
+                  href={`/gallery/${album.slug}`}
+                  className={`text-sm transition-all duration-200 block line-clamp-1 px-3 py-2 rounded-xl ${
+                    isSelected
+                      ? 'bg-brand-pink-main text-white font-medium shadow-sm hover:bg-brand-pink-light'
+                      : 'text-gray-500 hover:bg-brand-pink-light hover:text-white'
+                  }`}
+                >
+                  {lang === 'zh' ? album.titleZH : album.titleEN}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </aside>
