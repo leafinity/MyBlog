@@ -38,9 +38,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ slug: st
             The albums is empty.
           </div>
         ) : (
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
-            <MasonryGallery photos={photos} />
-          </div>
+          <MasonryGallery photos={photos} />
         )}
       </main>
     </div>
