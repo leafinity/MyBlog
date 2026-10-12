@@ -14,7 +14,7 @@ export default function GallerySidebar({
   return (
     <aside className="hidden md:block w-64 flex-shrink-0 pr-10 border-r border-gray-100 mr-10">
       <div className="sticky top-24">
-        <ul className="space-y-4">
+        <ul>
         {/* 左箭頭圖示 */}
         <li>
           <Link 
@@ -40,7 +40,7 @@ export default function GallerySidebar({
               <li key={album.slug}>
                 <Link
                   href={`/gallery/${album.slug}`}
-                  className={`text-sm transition-all duration-200 block line-clamp-1 px-3 py-2 rounded-xl ${
+                  className={`text-sm transition-all duration-200 block line-clamp-1 px-3 py-2 ${
                     isSelected
                       ? 'bg-brand-pink-main text-white font-medium shadow-sm'
                       : 'text-gray-500 hover:bg-brand-pink-light hover:text-white'
