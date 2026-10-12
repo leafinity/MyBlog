@@ -16,7 +16,7 @@ export default function MasonryGallery({ photos }: { photos: any[] }) {
             className="break-inside-avoid relative group mb-6"
           >
             <img 
-              src={photo.url} 
+              src={photo.cloudinaryUrl} 
               alt={photo.alt} 
               className="w-full object-cover hover:opacity-90 transition-opacity duration-300 bg-gray-100" 
               loading="lazy"

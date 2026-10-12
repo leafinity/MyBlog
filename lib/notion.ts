@@ -103,8 +103,10 @@ export async function getPhotosByAlbum(tripSlug: string) {
     'gallery-photos'
   );
 
+  const url = page.properties.url?.url || '',
   return results.map((page: any) => ({
-    url: page.properties.url?.url || page.properties.Photo_URL?.rich_text[0]?.plain_text || '',
+    url: url,
+    cloudinaryUrl: optimizeCloudinaryUrl(url, 800)
     alt: page.properties.alt.title[0]?.plain_text || 'photo',
   }));
 }
@@ -163,4 +165,9 @@ function getPostCoverUrl(post: any): string {
   }
 
   return '/default-cover.jpg';
+}
+
+function optimizeCloudinaryUrl(url: string, width = 1200) {
+  if (!url || !url.includes('cloudinary.com')) return url;
+  return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width}/`);
 }
