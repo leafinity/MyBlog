@@ -2,7 +2,7 @@ import { getAlbums, getPublishedPosts } from '../../../lib/notion';
 import dynamic from 'next/dynamic';
 
 // 動態引入 JourneyMap，並關閉 SSR 伺服器端渲染
-const JourneyMap = dynamic(() => import('@/components/JourneyMap'), {
+const JourneyMap = dynamic(() => import('../../../components/JourneyMap'), {
   ssr: false,
   loading: () => <div className="w-full h-[75vh] bg-gray-50 animate-pulse rounded-2xl" />
 });
