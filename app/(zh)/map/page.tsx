@@ -1,4 +1,4 @@
-import { getAlbums, getPublishedPosts } from '@/lib/notion';
+import { getAlbums, getPublishedPosts } from '../../../lib/notion';
 import dynamic from 'next/dynamic';
 
 // 動態引入 JourneyMap，並關閉 SSR 伺服器端渲染
