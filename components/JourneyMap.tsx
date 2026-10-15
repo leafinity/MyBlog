@@ -37,8 +37,23 @@ export default function JourneyMap({
     return <div className="w-full h-[75vh] bg-gray-50 animate-pulse rounded-2xl" />;
   }
 
-  const validAlbums = albums.filter(item => item.coords && typeof item.coords.lat === 'number' && typeof item.coords.lng === 'number');
-  const validPosts = posts.filter(item => item.coords && typeof item.coords.lat === 'number' && typeof item.coords.lng === 'number');
+  const validAlbums = albums.filter(item => 
+    item.location && 
+    typeof item.location === 'string' && 
+    item.location.trim() !== '' &&
+    item.coords && 
+    typeof item.coords.lat === 'number' && 
+    typeof item.coords.lng === 'number'
+  );
+
+  const validPosts = posts.filter(item => 
+    item.location && 
+    typeof item.location === 'string' && 
+    item.location.trim() !== '' &&
+    item.coords && 
+    typeof item.coords.lat === 'number' && 
+    typeof item.coords.lng === 'number'
+  );
 
   const allItems = [...validAlbums, ...validPosts];
   const defaultCenter = allItems.length > 0 
@@ -62,9 +77,9 @@ export default function JourneyMap({
           <Marker key={`album-${album.id}`} position={[album.coords.lat, album.coords.lng]}>
             <Popup>
               <div className="w-48 p-1">
-                {album.cover && (
+                {album.coverUrl && (
                   <img 
-                    src={album.cover} 
+                    src={album.coverUrl} 
                     alt={lang === 'zh' ? album.titleZH : album.titleEN} 
                     className="w-full h-28 object-cover rounded-lg mb-2 bg-gray-100" 
                   />
@@ -90,9 +105,9 @@ export default function JourneyMap({
           <Marker key={`post-${post.id}`} position={[post.coords.lat, post.coords.lng]}>
             <Popup>
               <div className="w-48 p-1">
-                {post.cover && (
+                {post.coverUrl && (
                   <img 
-                    src={post.cover} 
+                    src={post.coverUrl} 
                     alt={lang === 'zh' ? post.titleZH : post.titleEN} 
                     className="w-full h-28 object-cover rounded-lg mb-2 bg-gray-100" 
                   />
