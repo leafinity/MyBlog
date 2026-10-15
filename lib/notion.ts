@@ -37,7 +37,8 @@ export async function getPublishedPosts(lang: 'zh' | 'en' = 'zh') {
     date: page.properties.date?.date?.start || '',
     imageUrl: getPostCoverUrl(page),
     category: page.properties.category?.select?.name || '',
-    tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || []
+    tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || [],
+    location: page.properties.location?.rich_text[0]?.plain_text || '',
   }));
 }
 
@@ -89,6 +90,7 @@ export async function getAlbums() {
     titleEN: page.properties.title_en?.rich_text[0]?.plain_text || 'Untitled',
     coverUrl: page.properties.cover?.url || '',
     date: page.properties.date?.date?.start,
+    location: page.properties.location?.rich_text[0]?.plain_text || '',
   }));
 }
 
