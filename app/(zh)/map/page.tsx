@@ -1,11 +1,5 @@
 import { getAlbums, getPublishedPosts } from '../../../lib/notion';
-import dynamic from 'next/dynamic';
-
-// 動態引入 JourneyMap，並關閉 SSR 伺服器端渲染
-const JourneyMap = dynamic(() => import('../../../components/JourneyMap'), {
-  ssr: false,
-  loading: () => <div className="w-full h-[75vh] bg-gray-50 animate-pulse rounded-2xl" />
-});
+import ClientJourneyMap from '../../../components/ClientJourneyMap';
 
 export const revalidate = 3600;
 
@@ -22,7 +16,7 @@ export default async function MapPage() {
         <div className="w-12 h-1 bg-brand-pink-main rounded-full"></div>
       </div>
 
-      <JourneyMap albums={albums} posts={posts} lang="zh" />
+      <ClientJourneyMap albums={albums} posts={posts} lang="zh" />
     </main>
   );
 }
