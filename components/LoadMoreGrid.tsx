@@ -15,7 +15,7 @@ export default function LoadMoreGrid({ posts }: { posts: any[] }) {
             className="group flex flex-col h-full bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50 overflow-hidden">
             
             <div className="w-full aspect-[4/3] overflow-hidden relative bg-gray-100">
-              <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <img src={post.coverUrl} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
             </div>
 
             <div className="p-6 flex flex-col flex-grow">

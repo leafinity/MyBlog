@@ -26,7 +26,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 p-4 md:p-6">
             
             <div className="h-64 md:h-[400px] w-full relative overflow-hidden rounded-xl">
-              <img src={latestPost.imageUrl} alt={latestPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <img src={latestPost.coverUrl} alt={latestPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
             </div>
             
             <div className="p-4 md:p-8 md:pr-12 flex flex-col h-full justify-center">

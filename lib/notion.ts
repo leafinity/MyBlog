@@ -35,7 +35,7 @@ export async function getPublishedPosts(lang: 'zh' | 'en' = 'zh') {
     slug: page.properties.slug?.rich_text[0]?.plain_text || '',
     summary: page.properties.summary?.rich_text[0]?.plain_text || '',
     date: page.properties.date?.date?.start || '',
-    imageUrl: getPostCoverUrl(page),
+    coverUrl: getPostCoverUrl(page),
     category: page.properties.category?.select?.name || '',
     tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || [],
     location: page.properties.location?.rich_text[0]?.plain_text || '',
@@ -74,7 +74,7 @@ export async function getPostBySlug(slug: string, lang: 'zh' | 'en' = 'zh') {
     tags: page.properties.tags?.multi_select?.map((tag: any) => tag.name) || [],
     type: page.properties.type?.select?.name || 'Unknown',
     summary: page.properties.summary?.rich_text[0]?.plain_text || '',
-    imageUrl: getPostCoverUrl(page),
+    coverUrl: getPostCoverUrl(page),
   };
 }
 
