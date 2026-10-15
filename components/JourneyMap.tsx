@@ -62,73 +62,101 @@ export default function JourneyMap({
 
   return (
     <div className="w-full h-[75vh] rounded-2xl overflow-hidden border border-gray-100 bg-white">
-      <MapContainer 
-        center={defaultCenter as [number, number]} 
-        zoom={3} 
-        scrollWheelZoom={false}
-        style={{ width: '100%', height: '100%' }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        />
-
-        {validAlbums.map((album) => (
-          <Marker key={`album-${album.id}`} position={[album.coords.lat, album.coords.lng]}>
-            <Popup>
-              <div className="w-48 p-1">
-                {album.coverUrl && (
-                  <img 
-                    src={album.coverUrl} 
-                    alt={lang === 'zh' ? album.titleZH : album.titleEN} 
-                    className="w-full h-28 object-cover rounded-lg mb-2 bg-gray-100" 
-                  />
-                )}
-                <p className="text-xs font-semibold text-gray-900 line-clamp-1 mb-1">
-                  {lang === 'zh' ? album.titleZH : album.titleEN}
-                </p>
-                <p className="text-[11px] text-gray-400 mb-2">
-                  {album.location}
-                </p>
-                <Link 
-                  href={`/${lang}/gallery/${album.slug}`}
-                  className="text-xs text-brand-pink-main hover:underline block font-medium"
-                >
-                  {lang === 'zh' ? '查看相簿 →' : 'View Album →'}
-                </Link>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-
-        {validPosts.map((post) => (
-          <Marker key={`post-${post.id}`} position={[post.coords.lat, post.coords.lng]}>
-            <Popup>
-              <div className="w-48 p-1">
-                {post.coverUrl && (
-                  <img 
-                    src={post.coverUrl} 
-                    alt={lang === 'zh' ? post.titleZH : post.titleEN} 
-                    className="w-full h-28 object-cover rounded-lg mb-2 bg-gray-100" 
-                  />
-                )}
-                <p className="text-xs font-semibold text-gray-900 line-clamp-1 mb-1">
-                  {lang === 'zh' ? post.titleZH : post.titleEN}
-                </p>
-                <p className="text-[11px] text-gray-400 mb-2">
-                  {post.location}
-                </p>
-                <Link 
-                  href={`/${lang}/${post.slug}`}
-                  className="text-xs text-brand-pink-main hover:underline block font-medium"
-                >
-                  {lang === 'zh' ? '閱讀文章 →' : 'Read Post →'}
-                </Link>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+      {/* 強制轉型成 any 避開型別衝突 */}
+      {React.createElement(
+        MapContainer as any,
+        {
+          center: defaultCenter as [number, number],
+          zoom: 3,
+          scrollWheelZoom: false,
+          style: { width: '100%', height: '100%' },
+        },
+        [
+          React.createElement(TileLayer as any, {
+            key: 'tile-layer',
+            attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+            url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+          }),
+          ...validAlbums.map((album) =>
+            React.createElement(
+              Marker,
+              { key: `album-${album.id}`, position: [album.coords.lat, album.coords.lng] },
+              React.createElement(
+                Popup,
+                null,
+                React.createElement(
+                  'div',
+                  { className: 'w-48 p-1' },
+                  [
+                    album.coverUrl && React.createElement('img', {
+                      key: 'img',
+                      src: album.coverUrl,
+                      alt: lang === 'zh' ? album.titleZH : album.titleEN,
+                      className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100',
+                    }),
+                    React.createElement('p', {
+                      key: 'title',
+                      className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1',
+                    }, lang === 'zh' ? album.titleZH : album.titleEN),
+                    album.location && React.createElement('p', {
+                      key: 'loc',
+                      className: 'text-[11px] text-gray-400 mb-2',
+                    }, album.location),
+                    React.createElement(
+                      Link,
+                      {
+                        key: 'link',
+                        href: lang === 'zh' ? `/gallery/${album.slug}` : `/en/gallery/${album.slug}`,
+                        className: 'text-xs text-brand-pink-main hover:underline block font-medium',
+                      },
+                      lang === 'zh' ? '查看相簿 →' : 'View Album →'
+                    ),
+                  ]
+                )
+              )
+            )
+          ),
+          ...validPosts.map((post) =>
+            React.createElement(
+              Marker,
+              { key: `post-${post.id}`, position: [post.coords.lat, post.coords.lng] },
+              React.createElement(
+                Popup,
+                null,
+                React.createElement(
+                  'div',
+                  { className: 'w-48 p-1' },
+                  [
+                    post.coverUrl && React.createElement('img', {
+                      key: 'img',
+                      src: post.coverUrl,
+                      alt: lang === 'zh' ? post.titleZH : post.titleEN,
+                      className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100',
+                    }),
+                    React.createElement('p', {
+                      key: 'title',
+                      className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1',
+                    }, lang === 'zh' ? post.titleZH : post.titleEN),
+                    post.location && React.createElement('p', {
+                      key: 'loc',
+                      className: 'text-[11px] text-gray-400 mb-2',
+                    }, post.location),
+                    React.createElement(
+                      Link,
+                      {
+                        key: 'link',
+                        href: lang === 'zh' ? `/${post.slug}` : `/en/${post.slug}`,
+                        className: 'text-xs text-brand-pink-main hover:underline block font-medium',
+                      },
+                      lang === 'zh' ? '閱讀文章 →' : 'Read Post →'
+                    ),
+                  ]
+                )
+              )
+            )
+          ),
+        ]
+      )}
     </div>
   );
 }
