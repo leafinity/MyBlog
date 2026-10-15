@@ -50,12 +50,14 @@ export default function JourneyMap({
 
   return (
     <div className="w-full h-[75vh] rounded-2xl overflow-hidden border border-gray-100 bg-white">
+      {/* @ts-ignore */}
       <MapContainer 
         center={defaultCenter as [number, number]} 
         zoom={3} 
         scrollWheelZoom={false}
         style={{ width: '100%', height: '100%' }}
       >
+        {/* @ts-ignore */}
         <TileLayer
           attribution='&copy; <a href="https://carto.com/">CARTO</a>'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
