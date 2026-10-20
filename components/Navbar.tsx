@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Navbar() {
+  
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -17,7 +21,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* 右側：導覽列選單 */}
+        {/* 手機以外右側：導覽列選單 */}
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
           
           {/* 下拉式選單：旅遊 */}
@@ -39,10 +43,30 @@ export default function Navbar() {
             </div>
           </div>
 
+
           <Link href="/category/life" className="hover:text-brand-pink-main transition-colors">生活</Link>
           <Link href="/gallery" className="hover:text-brand-pink-main transition-colors">相簿</Link>
+          <Link href="/map" className="hover:text-brand-pink-main transition-colors">地圖</Link>
           <Link href="https://www.instagram.com/abbysresa/" className="hover:text-brand-pink-main transition-colors">Instagram</Link>
         </div>
+
+        {/* 手機版右側：漢堡按鈕 */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-gray-600 hover:text-brand-pink-main focus:outline-none p-2"
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? 
+            (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+        </button>
       </div>
     </nav>
   );

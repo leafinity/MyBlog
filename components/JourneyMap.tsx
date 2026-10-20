@@ -130,18 +130,6 @@ export default function JourneyMap({
                     }
                   },
                   [
-                    React.createElement('button', {
-                      key: 'close-btn',
-                      className: 'absolute top-2 right-2 w-7 h-7 bg-gray-100/80 hover:bg-gray-200 text-gray-600 rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-sm z-20',
-                      onClick: (e: any) => {
-                        e.stopPropagation();
-                        const closeBtn = document.querySelector('.leaflet-popup-close-button') as HTML HTMLElement;
-                        const mapContainer = document.querySelector('.leaflet-container');
-                        if (mapContainer) {
-                          document.body.click();
-                        }
-                      }
-                    }, '✕'),
                     album.coverUrl && React.createElement('div', {
                       key: 'img-wrapper',
                       className: 'w-full h-32 overflow-hidden rounded-lg mb-3 bg-gray-100 relative',
