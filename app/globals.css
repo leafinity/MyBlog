@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.90) !important; /* 半透明白色背景 */
+  backdrop-filter: blur(8px); /* 毛玻璃質感 */
+  border-radius: 16px !important; /* 更柔和的圓角 */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 4px !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.90) !important; /* 讓小尖角跟著半透明 */
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px !important;
+  line-height: 1.5 !important;
+}
