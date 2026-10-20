@@ -29,3 +29,17 @@
   opacity: 0.8 !important;
   text-decoration: underline !important;
 }
+
+/* 預設隱藏地圖 Popup 的關閉按鈕，滑鼠移入卡片（group）時才顯示 */
+.leaflet-popup-content-wrapper .leaflet-popup-close-button {
+  opacity: 0 !important;
+  transition: opacity 0.2s ease-in-out !important;
+}
+
+.leaflet-popup-content-wrapper:hover .leaflet-popup-close-button {
+  opacity: 0.7 !important;
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-close-button:hover {
+  opacity: 1 !important;
+}

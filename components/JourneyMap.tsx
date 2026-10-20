@@ -116,37 +116,41 @@ export default function JourneyMap({
           ...validAlbums.map((album) =>
             React.createElement(
               Marker as any,
-              { key: `album-${album.id}`, position: [album.coords.lat, album.coords.lng], icon: albumIcon},
+              { key: `album-${album.id}`, position: [album.coords.lat, album.coords.lng], icon: albumIcon },
               React.createElement(
                 Popup,
                 null,
                 React.createElement(
                   'div',
-                  { className: 'w-48 p-1' },
+                  { 
+                    className: 'w-48 p-1 cursor-pointer group',
+                    onClick: () => {
+                      const url = lang === 'zh' ? `/gallery/${album.slug}` : `/en/gallery/${album.slug}`;
+                      window.location.href = url;
+                    }
+                  },
                   [
                     album.coverUrl && React.createElement('img', {
                       key: 'img',
                       src: album.coverUrl,
                       alt: lang === 'zh' ? album.titleZH : album.titleEN,
-                      className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100',
+                      className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100 group-hover:opacity-95 transition-opacity',
                     }),
                     React.createElement('p', {
                       key: 'title',
-                      className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1',
+                      className: 'text-xs font-semibold text-gray-900 line-clamp-2 mb-1 group-hover:text-brand-pink-main transition-colors',
                     }, lang === 'zh' ? album.titleZH : album.titleEN),
-
-
+                    
                     album.date && React.createElement('p', {
                       key: 'date',
                       className: 'text-[11px] text-gray-400 mb-2',
                     }, album.date.slice(0, 7)),
 
                     React.createElement(
-                      Link,
+                      'span',
                       {
                         key: 'link',
-                        href: lang === 'zh' ? `/gallery/${album.slug}` : `/en/gallery/${album.slug}`,
-                        className: 'text-xs text-brand-pink-main hover:underline block font-medium',
+                        className: 'text-xs text-brand-pink-main block font-medium',
                       },
                       lang === 'zh' ? '查看相簿 →' : 'View Album →'
                     ),
@@ -164,18 +168,24 @@ export default function JourneyMap({
                 null,
                 React.createElement(
                   'div',
-                  { className: 'w-48 p-1' },
+                  { 
+                    className: 'w-48 p-1 cursor-pointer group',
+                    onClick: () => {
+                      const url = lang === 'zh' ? `/${post.slug}` : `/en/${post.slug}`;
+                      window.location.href = url;
+                    }
+                  },
                   [
                     post.coverUrl && React.createElement('img', {
                       key: 'img',
                       src: post.coverUrl,
                       alt: post.title,
-                      className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100',
+                      className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100 group-hover:opacity-95 transition-opacity',
                     }),
                     React.createElement('p', {
                       key: 'title',
-                      className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1',
-                    }, post.title),
+                      className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1 group-hover:text-brand-pink-main transition-colors',
+                    }, lpost.title),
                     
                     post.date && React.createElement('p', {
                       key: 'date',
@@ -183,11 +193,10 @@ export default function JourneyMap({
                     }, post.date),
 
                     React.createElement(
-                      Link,
+                      'span',
                       {
                         key: 'link',
-                        href: lang === 'zh' ? `/${post.slug}` : `/en/${post.slug}`,
-                        className: 'text-xs text-brand-pink-main hover:underline block font-medium',
+                        className: 'text-xs text-brand-pink-main block font-medium',
                       },
                       lang === 'zh' ? '閱讀文章 →' : 'Read Post →'
                     ),
