@@ -25,7 +25,7 @@ export default function EnNavbar() {
         </div>
         {/* 手機右側：留中文版 */}
         <div className="md:hidden flex items-center space-x-4">
-          <Link href="/" className="text-xs text-gray-400 hover:text-brand-pink-main transition-colors whitespace-nowrap border-l border-gray-200 pl-4">
+          <Link href="/" className="text-xs font-medium text-gray-500 hover:text-brand-pink-main transition-colors whitespace-nowrap">
             中文版 (ZH)
           </Link>
         </div>
