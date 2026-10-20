@@ -56,7 +56,7 @@ export default function Navbar() {
         {/* 手機版右側：漢堡按鈕 */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-600 hover:text-brand-pink-main focus:outline-none p-2"
+          className="md:hidden text-gray-600 hover:text-brand-pink-main focus:outline-none p-2 transition-colors"
           aria-label="Toggle Menu"
         >
           {isOpen ? (
