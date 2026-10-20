@@ -130,12 +130,17 @@ export default function JourneyMap({
                     }
                   },
                   [
-                    album.coverUrl && React.createElement('img', {
-                      key: 'img',
-                      src: album.coverUrl,
-                      alt: lang === 'zh' ? album.titleZH : album.titleEN,
-                      className: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out',
-                    }),
+                    album.coverUrl && React.createElement('div', {
+                      key: 'img-wrapper',
+                      className: 'w-full h-32 overflow-hidden rounded-lg mb-3 bg-gray-100 relative',
+                    }, [
+                      React.createElement('img', {
+                        key: 'img',
+                        src: album.coverUrl,
+                        alt: lang === 'zh' ? album.titleZH : album.titleEN,
+                        className: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out',
+                      })
+                    ]),
                     React.createElement('p', {
                       key: 'title',
                       className: 'text-xs font-semibold text-gray-900 line-clamp-2 mb-1 group-hover:text-brand-pink-main transition-colors',
@@ -160,19 +165,24 @@ export default function JourneyMap({
                 React.createElement(
                   'div',
                   { 
-                    className: 'w-52 p-3 bg-white/90 backdrop-blur-md rounded-xl shadow-xl border border-white/60 cursor-pointer group relative',
+                    className: 'w-52 p-3 bg-white rounded-xl shadow-xl border border-gray-100 cursor-pointer group relative',
                     onClick: () => {
                       const url = lang === 'zh' ? `/${post.slug}` : `/en/${post.slug}`;
                       window.location.href = url;
                     }
                   },
                   [
-                    post.coverUrl && React.createElement('img', {
-                      key: 'img',
-                      src: post.coverUrl,
-                      alt: post.title,
-                      className: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out',
-                    }),
+                    post.coverUrl && React.createElement('div', {
+                      key: 'img-wrapper',
+                      className: 'w-full h-32 overflow-hidden rounded-lg mb-3 bg-gray-100 relative',
+                    }, [
+                      React.createElement('img', {
+                        key: 'img',
+                        src: post.coverUrl,
+                        alt: post.title,
+                        className: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out',
+                      })
+                    ]),
                     React.createElement('p', {
                       key: 'title',
                       className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1 group-hover:text-brand-pink-main transition-colors',
