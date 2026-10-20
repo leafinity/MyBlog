@@ -49,7 +49,9 @@
 
 .leaflet-popup-content-wrapper {
   background: transparent !important;
-  box-shadow: none !important; /* 拔掉原本醜醜的硬陰影 */
+  box-shadow: none !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
 .leaflet-popup-content {
