@@ -166,17 +166,17 @@ export default function JourneyMap({
                     post.coverUrl && React.createElement('img', {
                       key: 'img',
                       src: post.coverUrl,
-                      alt: lang === 'zh' ? post.titleZH : post.titleEN,
+                      alt: post.title,
                       className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100',
                     }),
                     React.createElement('p', {
                       key: 'title',
                       className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1',
-                    }, lang === 'zh' ? post.titleZH : post.titleEN),
+                    }, post.title,
                     post.location && React.createElement('p', {
-                      key: 'loc',
+                      key: 'date',
                       className: 'text-[11px] text-gray-400 mb-2',
-                    }, post.location),
+                    }, post.date),
                     React.createElement(
                       Link,
                       {
