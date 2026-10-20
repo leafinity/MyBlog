@@ -94,7 +94,7 @@ export default function JourneyMap({
 
   const allItems = [...validAlbums, ...validPosts];
   const defaultCenter = [59.326, 18.056];
-  const defaultZoom = 6
+  const defaultZoom = 5
 
   return (
     <div className="w-full h-[75vh] rounded-2xl overflow-hidden border border-gray-100 bg-white">
@@ -145,15 +145,6 @@ export default function JourneyMap({
                       key: 'date',
                       className: 'text-[11px] text-gray-400 mb-2',
                     }, album.date.slice(0, 7)),
-
-                    React.createElement(
-                      'span',
-                      {
-                        key: 'link',
-                        className: 'text-xs text-brand-pink-main block font-medium',
-                      },
-                      lang === 'zh' ? '查看相簿 →' : 'View Album →'
-                    ),
                   ]
                 )
               )
@@ -191,11 +182,6 @@ export default function JourneyMap({
                       key: 'date',
                       className: 'text-[11px] text-gray-400 mb-2',
                     }, post.date),
-
-                    React.createElement('span',{
-                      key: 'link',
-                      className: 'text-xs text-brand-pink-main block font-medium',
-                    }, lang === 'zh' ? '閱讀文章 →' : 'Read Post →'),
                   ]
                 )
               )
