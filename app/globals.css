@@ -1,28 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.leaflet-popup-content-wrapper {
-  background: rgba(255, 255, 255, 0.90) !important; /* 半透明白色背景 */
-  backdrop-filter: blur(8px); /* 毛玻璃質感 */
-  border-radius: 16px !important; /* 更柔和的圓角 */
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 4px !important;
-}
-
+/*
 .leaflet-popup-content-wrapper {
   background: rgba(255, 255, 255, 0.88) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
-  border-radius: 1rem !important; /* 改用 1rem (即 rounded-xl) 替代原本的 20px */
+  border-radius: 1rem !important;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
   border: 1px solid rgba(255, 255, 255, 0.6) !important;
   padding: 4px !important;
 }
 
 .leaflet-popup-tip {
-  background: rgba(255, 255, 255, 0.90) !important; /* 讓小尖角跟著半透明 */
+  background: rgba(255, 255, 255, 0.90) !important;
 }
 
 .leaflet-popup-content {
@@ -40,7 +31,6 @@
   text-decoration: underline !important;
 }
 
-/* 預設隱藏地圖 Popup 的關閉按鈕，滑鼠移入卡片（group）時才顯示 */
 .leaflet-popup-content-wrapper .leaflet-popup-close-button {
   opacity: 0 !important;
   transition: opacity 0.2s ease-in-out !important;
@@ -52,4 +42,10 @@
 
 .leaflet-popup-content-wrapper .leaflet-popup-close-button:hover {
   opacity: 1 !important;
+}
+*/
+
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important; /* 拔掉原本醜醜的硬陰影 */
 }
