@@ -115,7 +115,7 @@ export default function JourneyMap({
           }),
           ...validAlbums.map((album) =>
             React.createElement(
-              Marker,
+              Marker as any,
               { key: `album-${album.id}`, position: [album.coords.lat, album.coords.lng], icon: albumIcon},
               React.createElement(
                 Popup,
@@ -154,7 +154,7 @@ export default function JourneyMap({
           ),
           ...validPosts.map((post) =>
             React.createElement(
-              Marker,
+              Marker as any,
               { key: `post-${post.id}`, position: [post.coords.lat, post.coords.lng], icon: postIcon },
               React.createElement(
                 Popup,
