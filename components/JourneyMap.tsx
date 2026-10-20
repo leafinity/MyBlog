@@ -59,9 +59,8 @@ export default function JourneyMap({
     .filter(item => item.coords !== null);
 
   const allItems = [...validAlbums, ...validPosts];
-  const defaultCenter = allItems.length > 0 
-    ? [allItems[0].coords.lat, allItems[0].coords.lng] 
-    : [25.033, 121.565];
+  const defaultCenter = [59.326, 18.056];
+  const defaultZoom = 5
 
   return (
     <div className="w-full h-[75vh] rounded-2xl overflow-hidden border border-gray-100 bg-white">
@@ -70,7 +69,7 @@ export default function JourneyMap({
         MapContainer as any,
         {
           center: defaultCenter as [number, number],
-          zoom: 3,
+          zoom: defaultZoom,
           scrollWheelZoom: false,
           style: { width: '100%', height: '100%' },
         },
