@@ -134,7 +134,7 @@ export default function JourneyMap({
                       key: 'img',
                       src: album.coverUrl,
                       alt: lang === 'zh' ? album.titleZH : album.titleEN,
-                      className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100 group-hover:opacity-95 transition-opacity',
+                      className: 'w-full h-28 object-cover rounded-lg mb-2 bg-gray-100 group-hover:scale-105 transition-transform duration-500 ease-out',
                     }),
                     React.createElement('p', {
                       key: 'title',

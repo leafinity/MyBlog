@@ -11,6 +11,16 @@
   padding: 4px !important;
 }
 
+.leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-radius: 1rem !important; /* 改用 1rem (即 rounded-xl) 替代原本的 20px */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  padding: 4px !important;
+}
+
 .leaflet-popup-tip {
   background: rgba(255, 255, 255, 0.90) !important; /* 讓小尖角跟著半透明 */
 }
