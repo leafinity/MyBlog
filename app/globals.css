@@ -45,7 +45,14 @@
 }
 */
 
+/* css for map popup */
+
 .leaflet-popup-content-wrapper {
   background: transparent !important;
   box-shadow: none !important; /* 拔掉原本醜醜的硬陰影 */
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: inherit !important;
 }

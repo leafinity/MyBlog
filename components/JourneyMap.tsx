@@ -123,7 +123,7 @@ export default function JourneyMap({
                 React.createElement(
                   'div',
                   { 
-                    className: 'w-48 p-1 cursor-pointer group',
+                    className: 'w-52 p-3 bg-white/90 backdrop-blur-md rounded-xl shadow-xl border border-white/60 cursor-pointer group relative',
                     onClick: () => {
                       const url = lang === 'zh' ? `/gallery/${album.slug}` : `/en/gallery/${album.slug}`;
                       window.location.href = url;
@@ -160,7 +160,7 @@ export default function JourneyMap({
                 React.createElement(
                   'div',
                   { 
-                    className: 'w-48 p-1 cursor-pointer group',
+                    className: 'w-52 p-3 bg-white/90 backdrop-blur-md rounded-xl shadow-xl border border-white/60 cursor-pointer group relative',
                     onClick: () => {
                       const url = lang === 'zh' ? `/${post.slug}` : `/en/${post.slug}`;
                       window.location.href = url;
