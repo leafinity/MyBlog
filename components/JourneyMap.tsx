@@ -55,6 +55,9 @@ export default function JourneyMap({
     typeof item.coords.lng === 'number'
   );
 
+  console.log("有效的相簿座標：", validAlbums);
+  console.log("有效的文章座標：", validPosts);
+
   const allItems = [...validAlbums, ...validPosts];
   const defaultCenter = allItems.length > 0 
     ? [allItems[0].coords.lat, allItems[0].coords.lng] 
