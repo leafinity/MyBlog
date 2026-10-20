@@ -70,6 +70,7 @@ export default function Navbar() {
             </svg>
           )}
         </button>
+      </div>
 
       {/* 手機版全版下拉選單 */}
       {isOpen && (
