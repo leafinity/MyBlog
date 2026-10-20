@@ -37,23 +37,23 @@ export default function JourneyMap({
     return <div className="w-full h-[75vh] bg-gray-50 animate-pulse rounded-2xl" />;
   }
 
-  const validAlbums = albums.filter(item => 
-    item.location && 
-    typeof item.location === 'string' && 
-    item.location.trim() !== '' &&
-    item.coords && 
-    typeof item.coords.lat === 'number' && 
-    typeof item.coords.lng === 'number'
-  );
+  const parseCoords = (locStr: string) => {
+    if (!locStr || typeof locStr !== 'string' || !locStr.includes(',')) return null;
+    const parts = locStr.split(',');
+    console.log("split to", parts);
+    if (parts.length < 2) return null;
+    const lat = parseFloat(parts[0].trim());
+    const lng = parseFloat(parts[1].trim());
+    if (isNaN(lat) || isNaN(lng)) return null;
+    return { lat, lng };
+  };
 
-  const validPosts = posts.filter(item => 
-    item.location && 
-    typeof item.location === 'string' && 
-    item.location.trim() !== '' &&
-    item.coords && 
-    typeof item.coords.lat === 'number' && 
-    typeof item.coords.lng === 'number'
-  );
+  const validAlbums = albums
+    .map(item => ({ ...item, coords: parseCoords(item.location) }))
+    .filter(item => item.coords !== null);
+  const validPosts = posts
+    .map(item => ({ ...item, coords: parseCoords(item.location) }))
+    .filter(item => item.coords !== null);
 
   console.log("有效的相簿座標：", validAlbums);
   console.log("有效的文章座標：", validPosts);
