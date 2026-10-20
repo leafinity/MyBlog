@@ -94,7 +94,7 @@ export default function JourneyMap({
 
   const allItems = [...validAlbums, ...validPosts];
   const defaultCenter = [59.326, 18.056];
-  const defaultZoom = 5
+  const defaultZoom = 6
 
   return (
     <div className="w-full h-[75vh] rounded-2xl overflow-hidden border border-gray-100 bg-white">
@@ -134,10 +134,13 @@ export default function JourneyMap({
                       key: 'title',
                       className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1',
                     }, lang === 'zh' ? album.titleZH : album.titleEN),
-                    album.location && React.createElement('p', {
-                      key: 'loc',
+
+
+                    album.date && React.createElement('p', {
+                      key: 'date',
                       className: 'text-[11px] text-gray-400 mb-2',
-                    }, album.location),
+                    }, album.date).slice(0, 7),
+
                     React.createElement(
                       Link,
                       {
@@ -173,10 +176,12 @@ export default function JourneyMap({
                       key: 'title',
                       className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1',
                     }, post.title,
-                    post.location && React.createElement('p', {
+                    
+                    post.date && React.createElement('p', {
                       key: 'date',
                       className: 'text-[11px] text-gray-400 mb-2',
                     }, post.date),
+
                     React.createElement(
                       Link,
                       {
