@@ -185,21 +185,17 @@ export default function JourneyMap({
                     React.createElement('p', {
                       key: 'title',
                       className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1 group-hover:text-brand-pink-main transition-colors',
-                    }, lpost.title),
+                    }, post.title),
                     
                     post.date && React.createElement('p', {
                       key: 'date',
                       className: 'text-[11px] text-gray-400 mb-2',
                     }, post.date),
 
-                    React.createElement(
-                      'span',
-                      {
-                        key: 'link',
-                        className: 'text-xs text-brand-pink-main block font-medium',
-                      },
-                      lang === 'zh' ? '閱讀文章 →' : 'Read Post →'
-                    ),
+                    React.createElement('span',{
+                      key: 'link',
+                      className: 'text-xs text-brand-pink-main block font-medium',
+                    }, lang === 'zh' ? '閱讀文章 →' : 'Read Post →'),
                   ]
                 )
               )
