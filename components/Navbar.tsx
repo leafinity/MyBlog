@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function Navbar() {
   
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileTravelOpen, setIsMobileTravelOpen] = useState(false);
 
   return (
     <nav className="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
@@ -69,6 +70,35 @@ export default function Navbar() {
           )}
         </button>
       </div>
+
+      {/* 手機版全版下拉選單 */}
+      {isOpen && (
+        <div className="md:hidden bg-white border-b border-gray-100 px-6 py-4 space-y-3 text-base font-medium text-gray-600 shadow-lg">
+          <div>
+            <button
+              onClick={() => setIsMobileTravelOpen(!isMobileTravelOpen)}
+              className="w-full flex items-center justify-between py-2 hover:text-brand-pink-main transition-colors"
+            >
+              <span>旅遊</span>
+              <svg className={`w-4 h-4 text-gray-400 transition-transform ${isMobileTravelOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {isMobileTravelOpen && (
+              <div className="pl-4 py-2 space-y-2 flex flex-col bg-gray-50 rounded-lg mt-1 text-sm">
+                <Link href="/category/sw" onClick={() => setIsOpen(false)} className="py-1.5 hover:text-brand-pink-main">瑞典旅遊</Link>
+                <Link href="/category/no" onClick={() => setIsOpen(false)} className="py-1.5 hover:text-brand-pink-main">挪威旅遊</Link>
+                <Link href="/category/eu" onClick={() => setIsOpen(false)} className="py-1.5 hover:text-brand-pink-main">歐洲其他</Link>
+              </div>
+            )}
+          </div>
+
+          <Link href="/category/life" onClick={() => setIsOpen(false)} className="block py-2 hover:text-brand-pink-main transition-colors">生活</Link>
+          <Link href="/gallery" onClick={() => setIsOpen(false)} className="block py-2 hover:text-brand-pink-main transition-colors">相簿</Link>
+          <Link href="https://www.instagram.com/abbysresa/" onClick={() => setIsOpen(false)} className="block py-2 hover:text-brand-pink-main transition-colors">Instagram</Link>
+        </div>
+      )}
     </nav>
   );
 }
