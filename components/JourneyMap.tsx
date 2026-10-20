@@ -10,10 +10,13 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 let DefaultIcon = L.icon({
-  iconUrl: icon.src,
-  shadowUrl: iconShadow.src,
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
@@ -54,9 +57,6 @@ export default function JourneyMap({
   const validPosts = posts
     .map(item => ({ ...item, coords: parseCoords(item.location) }))
     .filter(item => item.coords !== null);
-
-  console.log("有效的相簿座標：", validAlbums);
-  console.log("有效的文章座標：", validPosts);
 
   const allItems = [...validAlbums, ...validPosts];
   const defaultCenter = allItems.length > 0 

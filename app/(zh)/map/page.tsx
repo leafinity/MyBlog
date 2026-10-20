@@ -7,9 +7,6 @@ export default async function MapPage() {
   const albums = await getAlbums();
   const posts = await getPublishedPosts();
 
-  console.log("相簿：", albums);
-  console.log("文章：", posts);
-
   return (
     <main className="max-w-[1400px] mx-auto px-6 py-12 md:py-20">
       <div className="mb-10">
