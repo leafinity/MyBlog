@@ -139,7 +139,7 @@ export default function JourneyMap({
                     album.date && React.createElement('p', {
                       key: 'date',
                       className: 'text-[11px] text-gray-400 mb-2',
-                    }, album.date).slice(0, 7),
+                    }, album.date.slice(0, 7)),
 
                     React.createElement(
                       Link,
@@ -175,7 +175,7 @@ export default function JourneyMap({
                     React.createElement('p', {
                       key: 'title',
                       className: 'text-xs font-semibold text-gray-900 line-clamp-1 mb-1',
-                    }, post.title,
+                    }, post.title),
                     
                     post.date && React.createElement('p', {
                       key: 'date',
