@@ -57,7 +57,7 @@ export default function Navbar() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`md:hidden p-2 transition-colors focus:outline-none ${
-            isOpen ? 'text-brand-pink-main' : 'text-gray-600 hover:text-brand-pink-main'
+            isOpen ? 'text-brand-pink-main' : 'text-gray-600'
           }`}
           aria-label="Toggle Menu"
         >
