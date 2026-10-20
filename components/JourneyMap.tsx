@@ -19,6 +19,40 @@ let DefaultIcon = L.icon({
   shadowSize: [41, 41]
 });
 
+const albumIcon = L.divIcon({
+  className: 'album-map-marker',
+  html: `
+    <div style="
+      width: 16px;
+      height: 16px;
+      background-color: #E16B8C;
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    "></div>
+  `,
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+  popupAnchor: [0, -10],
+});
+
+const postIcon = L.divIcon({
+  className: 'post-map-marker',
+  html: `
+    <div style="
+      width: 14px;
+      height: 14px;
+      background-color: #C45573;
+      border: 3px solid #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    "></div>
+  `,
+  iconSize: [14, 14],
+  iconAnchor: [7, 7],
+  popupAnchor: [0, -9],
+});
+
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function JourneyMap({ 
@@ -82,7 +116,7 @@ export default function JourneyMap({
           ...validAlbums.map((album) =>
             React.createElement(
               Marker,
-              { key: `album-${album.id}`, position: [album.coords.lat, album.coords.lng] },
+              { key: `album-${album.id}`, position: [album.coords.lat, album.coords.lng], icon: albumIcon},
               React.createElement(
                 Popup,
                 null,
@@ -121,7 +155,7 @@ export default function JourneyMap({
           ...validPosts.map((post) =>
             React.createElement(
               Marker,
-              { key: `post-${post.id}`, position: [post.coords.lat, post.coords.lng] },
+              { key: `post-${post.id}`, position: [post.coords.lat, post.coords.lng], icon: postIcon },
               React.createElement(
                 Popup,
                 null,
