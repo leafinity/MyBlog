@@ -1,11 +1,21 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function LoadMoreAlbums({ albums, lang = 'zh' }: { albums: any[], lang?: 'zh' | 'en' }) {
   const itemsPerPage = 9;
-  const [displayCount, setDisplayCount] = useState(itemsPerPage);
+  const [displayCount, setDisplayCount] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedCount = sessionStorage.getItem('home_display_count');
+      return savedCount ? parseInt(savedCount, 10) : itemsPerPage;
+    }
+    return itemsPerPage;
+  });
+  
+  useEffect(() => {
+    sessionStorage.setItem('home_display_count', displayCount.toString());
+  }, [displayCount]);
 
   return (
     <div>
