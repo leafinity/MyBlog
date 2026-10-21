@@ -1,11 +1,22 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function LoadMoreGrid({ posts }: { posts: any[] }) {
-  const [displayCount, setDisplayCount] = useState(9);
 
+  const [displayCount, setDisplayCount] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedCount = sessionStorage.getItem('home_display_count');
+      return savedCount ? parseInt(savedCount, 10) : 9;
+    }
+    return 9;
+  });
+  
+  useEffect(() => {
+    sessionStorage.setItem('home_display_count', displayCount.toString());
+  }, [displayCount]);
+  
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12">
