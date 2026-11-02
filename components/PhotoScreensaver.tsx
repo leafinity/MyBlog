@@ -63,8 +63,6 @@ export default function PhotoScreensaver({ photos }: { photos: Photo[] }) {
 
   return (
     <div className="relative w-full h-[75vh] min-h-[500px] overflow-hidden bg-gray-900 rounded-3xl shadow-2xl">
-      
-      {/* 背景照片：淡入淡出與緩慢縮放 */}
       <img
         src={currentPhoto.cloudinaryUrl}
         alt={currentPhoto.alt || title}
@@ -72,18 +70,23 @@ export default function PhotoScreensaver({ photos }: { photos: Photo[] }) {
           fade ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
         } transition-transform duration-[7000ms]`}
       />
-
-      {/* 底部質感漸層遮罩 */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
-
-      {/* Google TV 風格角落資訊欄 (自動從 slug 讀取) */}
       <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end text-white">
-        
-        {/* 左側：自動解析的標題與年份 */}
         <div className="space-y-1">
           {year && (
             <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-medium tracking-wide mb-2">
               {year}
             </span>
           )}
-          <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight
+          <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white drop-shadow-md">
+            {title}
+          </h2>
+        </div>
+        <div className="hidden sm:flex items-center gap-2 text-xs text-gray-400 font-mono tracking-wider">
+          <span>{currentIndex + 1} / {shuffledPhotos.length}</span>
+          <div className="w-2 h-2 rounded-full bg-brand-pink-main animate-pulse" />
+        </div>
+      </div>
+    </div>
+  );
+}
