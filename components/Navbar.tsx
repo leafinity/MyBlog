@@ -27,6 +27,7 @@ export default function Navbar() {
         {/* 手機以外右側：導覽列選單 */}
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
           
+          <Link href="/blog" className="hover:text-brand-pink-main transition-colors">文章</Link>
           {/* 下拉式選單：旅遊 */}
           <div className="relative group py-6">
             <button className="flex items-center transition-colors cursor-pointer hover:text-brand-pink-main">
@@ -77,6 +78,7 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden bg-white border-b border-gray-100 px-6 py-4 space-y-3 text-base font-medium text-gray-600 shadow-lg">
           <div>
+            <Link href="/blog" className="hover:text-brand-pink-main transition-colors">所有文章</Link>
             <button
               onClick={() => setIsMobileTravelOpen(!isMobileTravelOpen)}
               className="w-full flex items-center justify-between py-2 hover:text-brand-pink-main transition-colors"
