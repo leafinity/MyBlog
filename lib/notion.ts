@@ -126,7 +126,7 @@ export async function getAllScreensaverPhotos() {
     const url = page.properties.url?.url || '';
     return {
       url: url,
-      cloudinaryUrl: optimizeCloudinaryUrl(url, 1200),
+      cloudinaryUrl: optimizeCloudinaryUrl(url, 2000),
       slug: page.properties.slug?.select?.name || '',
       alt: page.properties.alt?.title[0]?.plain_text || 'photo',
     };
