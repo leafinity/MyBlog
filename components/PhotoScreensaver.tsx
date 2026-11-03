@@ -30,14 +30,13 @@ export default function PhotoScreensaver({ photos }: { photos: Photo[] }) {
     const interval = setInterval(() => {
       const next = (currentIndex + 1) % shuffledPhotos.length;
       setNextIndex(next);
-      setIsFading(true); // 開始淡入下一張圖
+      setIsFading(true);
 
-      // 動畫結束後更新當前索引，重置下一張狀態
       setTimeout(() => {
         setCurrentIndex(next);
         setNextIndex(null);
         setIsFading(false);
-      }, 1000); // 1秒的漸層過渡時間
+      }, 1000);
     }, 6000);
 
     return () => clearInterval(interval);
@@ -61,14 +60,14 @@ export default function PhotoScreensaver({ photos }: { photos: Photo[] }) {
   const { year, title } = parseSlug(currentPhoto.slug);
 
   return (
-    <div className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-black">
-      
+    <div className="fixed inset-0 w-screen h-screen overflow-hidden bg-black z-0">
       <img
         src={currentPhoto.cloudinaryUrl}
-        alt={currentPhoto.alt}
+        alt={currentPhoto.alt || title}
         className="absolute inset-0 w-full h-full object-cover"
       />
 
+      {/* 下一張圖片（交叉淡入） */}
       {nextPhoto && (
         <img
           src={nextPhoto.url}
@@ -79,9 +78,11 @@ export default function PhotoScreensaver({ photos }: { photos: Photo[] }) {
         />
       )}
 
+      {/* 底部漸層遮罩 */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
 
-      <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end text-white z-10">
+      {/* 左下角資訊欄 */}
+      <div className="absolute bottom-10 left-10 right-10 flex justify-between items-end text-white z-10">
         <div className="space-y-1">
           {year && (
             <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-medium tracking-wide mb-2">
@@ -91,10 +92,6 @@ export default function PhotoScreensaver({ photos }: { photos: Photo[] }) {
           <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white drop-shadow-md">
             {title}
           </h2>
-        </div>
-        <div className="hidden sm:flex items-center gap-2 text-xs text-gray-400 font-mono tracking-wider">
-          <span>{currentIndex + 1} / {shuffledPhotos.length}</span>
-          <div className="w-2 h-2 rounded-full bg-brand-pink-main animate-pulse" />
         </div>
       </div>
 
