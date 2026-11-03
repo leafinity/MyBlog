@@ -10,4 +10,5 @@ export default function ZhLayout({
     <div className="min-h-screen bg-black text-white flex flex-col">
       <main className="flex-grow">{children}</main>
     </div>
+  );
 }
