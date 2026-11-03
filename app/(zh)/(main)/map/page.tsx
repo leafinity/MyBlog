@@ -1,5 +1,5 @@
-import { getAlbums, getPublishedPosts } from '../../../lib/notion';
-import ClientJourneyMap from '../../../components/ClientJourneyMap';
+import { getAlbums, getPublishedPosts } from '../../../../lib/notion';
+import ClientJourneyMap from '../../../../components/ClientJourneyMap';
 
 export const revalidate = 3600;
 

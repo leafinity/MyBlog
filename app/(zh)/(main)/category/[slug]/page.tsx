@@ -1,6 +1,6 @@
-import { getPostsByCategory } from '../../../../lib/notion';
-import LoadMoreGrid from '../../../../components/LoadMoreGrid';
-import { categoryMap } from '../../../../lib/mapping';
+import { getPostsByCategory } from '../../../../../lib/notion';
+import LoadMoreGrid from '../../../../../components/LoadMoreGrid';
+import { categoryMap } from '../../../../../lib/mapping';
 
 export const revalidate = 3600;
 

@@ -1,5 +1,5 @@
-import { getAlbums } from '../../../lib/notion';
-import LoadMoreAlbums from '../../..//components/LoadMoreAlbums';
+import { getAlbums } from '../../../../lib/notion';
+import LoadMoreAlbums from '../../../..//components/LoadMoreAlbums';
 
 export const revalidate = 3600;
 

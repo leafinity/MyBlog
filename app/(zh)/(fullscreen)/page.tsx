@@ -1,6 +1,6 @@
-import PhotoScreensaver from '../../components/PhotoScreensaver';
+import PhotoScreensaver from '../../../components/PhotoScreensaver';
 
-import { getAllScreensaverPhotos } from '../../lib/notion'; 
+import { getAllScreensaverPhotos } from '../../../lib/notion'; 
 
 export const revalidate = 86400;
 

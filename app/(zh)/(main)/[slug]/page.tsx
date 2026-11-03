@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { NotionAPI } from 'notion-client';
-import { getPostBySlug } from '../../../lib/notion';
-import NotionRendererView from '../../../components/NotionRendererView';
-import { reverseTagMap } from '../../../lib/mapping';
+import { getPostBySlug } from '../../../../lib/notion';
+import NotionRendererView from '../../../../components/NotionRendererView';
+import { reverseTagMap } from '../../../../lib/mapping';
 
 export const revalidate = 3600;
 const notionX = new NotionAPI();

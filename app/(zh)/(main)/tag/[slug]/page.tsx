@@ -1,6 +1,6 @@
-import { getPostsByTag } from '../../../../lib/notion';
-import LoadMoreGrid from '../../../../components/LoadMoreGrid';
-import { tagMap } from '../../../../lib/mapping';
+import { getPostsByTag } from '../../../../../lib/notion';
+import LoadMoreGrid from '../../../../../components/LoadMoreGrid';
+import { tagMap } from '../../../../../lib/mapping';
 
 export const revalidate = 3600;
 
