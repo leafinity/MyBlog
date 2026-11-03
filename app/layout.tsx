@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import ScrollToTop from "../components/ScrollToTop";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,9 +22,6 @@ export default function RootLayout({
     <html lang="zh-TW">
       <body className="bg-gray-50 text-gray-900 antialiased">
         {children}
-
-        {/* Scroll to top button */}
-        <ScrollToTop />
       </body>
     </html>
   );

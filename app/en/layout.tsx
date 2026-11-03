@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import EnNavbar from '../../components/EnNavbar';
 import EnFooter from "../../components/EnFooter";
+import ScrollToTop from "../../components/ScrollToTop";
 
 export default function EnLayout({
   children,
@@ -16,6 +17,9 @@ export default function EnLayout({
       <main>{children}</main>
         
       <EnFooter />
+
+      {/* Scroll to top button */}
+      <ScrollToTop />
     </>
   );
 }
