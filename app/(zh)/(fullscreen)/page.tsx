@@ -9,15 +9,16 @@ export default async function Home() {
 
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-black flex flex-col justify-between items-center py-10 md:py-16 px-6">
-      {/* 相片輪播 */}
+      {/* 1. 滿版背景相片輪播 */}
       <PhotoScreensaver photos={photos} />
 
-      {/* 上方佔位 */}
+      {/* 2. 上方佔位 */}
       <div className="w-full h-1/4 pointer-events-none" />
 
-      {/* 標題與按鈕 */}
+      {/* 3. 中間偏下的群組：主副標題與按鈕之間精準留出約一個標題高度的空間 */}
       <div className="relative z-25 flex flex-col items-center text-center max-w-xl mx-auto space-y-10">
         
+        {/* 主標題與副標題 */}
         <div className="space-y-4">
           <h1 className="text-2xl md:text-4xl font-bold tracking-widest text-white drop-shadow-lg">
             Abby&apos;s Journey
@@ -27,6 +28,7 @@ export default async function Home() {
           </p>
         </div>
 
+        {/* 探索足跡按鈕（與上方拉開剛好的舒適間距） */}
         <div>
           <Link
             href="/blog"
@@ -38,7 +40,7 @@ export default async function Home() {
 
       </div>
 
-      {/* 下方佔位 */}
+      {/* 4. 下方佔位 */}
       <div className="w-full h-1/4 pointer-events-none" />
     </main>
   );
