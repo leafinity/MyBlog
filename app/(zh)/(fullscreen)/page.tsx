@@ -16,7 +16,7 @@ export default async function Home() {
       <div className="w-full h-1/4 pointer-events-none" />
 
       {/* 標題與按鈕 */}
-      <div className="relative z-25 flex flex-col items-center text-center max-w-xl mx-auto space-y-8">
+      <div className="relative z-25 flex flex-col items-center text-center max-w-xl mx-auto space-y-10">
         
         <div className="space-y-4">
           <h1 className="text-2xl md:text-4xl font-bold tracking-widest text-white drop-shadow-lg">
