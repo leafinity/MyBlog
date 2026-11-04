@@ -81,13 +81,14 @@ export default function PhotoScreensaver({ photos }: { photos: Photo[] }) {
       {/* 底部漸層遮罩 */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
 
-      {/* 左下角資訊欄 */}<div className="absolute bottom-12 left-8 md:left-16 flex flex-col items-start text-white z-10 space-y-1">
+      {/* 左下角資訊欄 */}
+      <div className="absolute bottom-10 left-8 md:left-14 flex flex-col items-start text-white z-10 space-y-0.5">
         {year && (
-          <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-medium tracking-wide mb-1">
+          <span className="inline-block px-2.5 py-0.5 bg-white/15 backdrop-blur-md rounded-full text-[11px] font-medium tracking-wide mb-1 text-gray-200">
             {year}
           </span>
         )}
-        <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white drop-shadow-md">
+        <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-white/90 drop-shadow-md">
           {title}
         </h2>
       </div>
