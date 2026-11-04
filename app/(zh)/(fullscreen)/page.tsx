@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import PhotoScreensaver from '../../../components/PhotoScreensaver';
 
 import { getAllScreensaverPhotos } from '../../../lib/notion'; 
