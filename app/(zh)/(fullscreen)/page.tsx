@@ -10,9 +10,11 @@ export default async function Home() {
   const photos = await getAllScreensaverPhotos();
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-8">
+    <main className="relative w-screen h-screen overflow-hidden bg-black">
+      {/* 相片輪播 */}
       <PhotoScreensaver photos={photos} />
 
+      {/* 進入按鈕 */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
         <Link
           href="/blog"
