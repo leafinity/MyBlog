@@ -88,7 +88,7 @@ export default function PhotoScreensaver({ photos }: { photos: Photo[] }) {
             {year}
           </span>
         )}
-        <h2 className="text-xl md:text-2xl font-normal tracking-wide text-white/90 drop-shadow-md">
+        <h2 className="text-sm md:text-lg font-normal tracking-wide text-white/90 drop-shadow-md">
           {title}
         </h2>
       </div>
