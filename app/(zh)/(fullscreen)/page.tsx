@@ -8,14 +8,12 @@ export default async function Home() {
   const photos = await getAllScreensaverPhotos();
 
   return (
-    <main className="relative w-screen h-screen overflow-hidden bg-black flex flex-col justify-between items-center py-12 md:py-20 px-6">
+    <main className="relative w-screen h-screen overflow-hidden bg-black">
       {/* 相片輪播 */}
       <PhotoScreensaver photos={photos} />
 
-      {/* 上方佔位 */}
-      <div className="w-full h-1/4 pointer-events-none" />
-
-      <div className="relative z-25 flex flex-col items-center text-center max-w-xl mx-auto space-y-10">
+      {/* 主標、副標、按鈕 */}
+      <div className="absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-25 flex flex-col items-center text-center w-full px-4 space-y-14">
         
         {/* 主標題與副標題 */}
         <div className="space-y-4">
@@ -36,11 +34,7 @@ export default async function Home() {
             <span>探索足跡</span>
           </Link>
         </div>
-
       </div>
-
-      {/* 下方佔位 */}
-      <div className="w-full h-1/4 pointer-events-none" />
     </main>
   );
 }
