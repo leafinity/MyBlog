@@ -8,12 +8,12 @@ export default async function Home() {
   const photos = await getAllScreensaverPhotos();
 
   return (
-    <main className="relative w-screen h-screen overflow-hidden bg-black">
+    <main className="relative w-screen h-dvh overflow-hidden bg-black select-none">
       {/* 相片輪播 */}
       <PhotoScreensaver photos={photos} />
 
       {/* 主標、副標、按鈕 */}
-      <div className="absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-25 flex flex-col items-center text-center w-full px-4 space-y-14">
+      <div className="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-25 flex flex-col items-center text-center w-full px-4 space-y-14">
         
         {/* 主標題與副標題 */}
         <div className="space-y-4">
