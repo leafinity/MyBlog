@@ -13,14 +13,14 @@ export default async function Home() {
       <PhotoScreensaver photos={photos} />
 
       {/* 主標、副標、按鈕 */}
-      <div className="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-25 flex flex-col items-center text-center w-full px-4 space-y-14">
+      <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-25 flex flex-col items-center text-center w-full px-4 space-y-14">
         
         {/* 主標題與副標題 */}
         <div className="space-y-4">
           <h1 className="text-2xl md:text-4xl font-bold tracking-widest text-white drop-shadow-lg">
             Abby&apos;s Journey
           </h1>
-          <p className="text-xs md:text-sm text-gray-200 font-light tracking-widest drop-shadow-md">
+          <p className="text-xs md:text-sm text-gray-200 font-medium tracking-widest drop-shadow-md">
             透過相機鏡頭，記錄北歐與世界的足跡
           </p>
         </div>
